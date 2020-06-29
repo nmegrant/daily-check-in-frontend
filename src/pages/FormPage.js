@@ -4,11 +4,14 @@ import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
 
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
 
 export default function FormPage() {
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
+
+  function submitText() {}
 
   return (
     <div>
@@ -44,6 +47,7 @@ export default function FormPage() {
             onChange={(event) => setLife(event.target.value)}
           />
         </FormControl>
+        <Button onSubmit={submitText}>Submit</Button>
       </form>
     </div>
   );
