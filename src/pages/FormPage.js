@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
+
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 
@@ -10,7 +13,6 @@ export default function FormPage() {
   return (
     <div>
       <h1>How are you doing?</h1>
-
       <form>
         <FormControl>
           <TextField
