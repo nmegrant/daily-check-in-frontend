@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
 
@@ -10,8 +11,14 @@ export default function FormPage() {
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
+  const dispatch = useDispatch;
 
-  function submitText() {}
+  function submitText() {
+    dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
+    setToday("");
+    setTomorrow("");
+    setLife("");
+  }
 
   return (
     <div>
@@ -47,7 +54,9 @@ export default function FormPage() {
             onChange={(event) => setLife(event.target.value)}
           />
         </FormControl>
-        <Button onSubmit={submitText}>Submit</Button>
+        <Button onSubmit={submitText} color="primary" variant="contained">
+          Submit
+        </Button>
       </form>
     </div>
   );
