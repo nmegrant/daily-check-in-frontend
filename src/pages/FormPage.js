@@ -11,7 +11,7 @@ export default function FormPage() {
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
@@ -54,7 +54,7 @@ export default function FormPage() {
             onChange={(event) => setLife(event.target.value)}
           />
         </FormControl>
-        <Button onSubmit={submitText} color="primary" variant="contained">
+        <Button onClick={submitText} color="primary" variant="contained">
           Submit
         </Button>
       </form>
