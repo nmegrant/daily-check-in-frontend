@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
@@ -12,12 +13,14 @@ export default function FormPage() {
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
 
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
     setToday("");
     setTomorrow("");
     setLife("");
+    history.push("/results");
   }
 
   return (
