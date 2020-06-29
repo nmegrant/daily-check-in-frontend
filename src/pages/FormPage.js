@@ -1,16 +1,28 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
+import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
+
 import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
 
 export default function FormPage() {
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
+  const dispatch = useDispatch();
+
+  function submitText() {
+    dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
+    setToday("");
+    setTomorrow("");
+    setLife("");
+  }
 
   return (
     <div>
       <h1>How are you doing?</h1>
-
       <form>
         <FormControl>
           <TextField
@@ -42,6 +54,9 @@ export default function FormPage() {
             onChange={(event) => setLife(event.target.value)}
           />
         </FormControl>
+        <Button onClick={submitText} color="primary" variant="contained">
+          Submit
+        </Button>
       </form>
     </div>
   );
