@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../store/auth/actions";
 import {
@@ -71,6 +72,9 @@ export default function LoginPage() {
             Log in
           </Button>
         </Grid>
+        <p>
+          Not a member? Don't miss out! <Link to="/signup">Sign up</Link> now!
+        </p>
       </Grid>
     </form>
   );
