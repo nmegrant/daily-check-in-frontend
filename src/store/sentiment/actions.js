@@ -24,7 +24,7 @@ export function getSentimentHistoryThunkCreator() {
         },
       }
     );
-    dispatch(getHistory(sentimentHistory));
+    dispatch(getHistory(sentimentHistory.data));
   };
 }
 

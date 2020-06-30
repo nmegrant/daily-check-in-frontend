@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectSentiment } from "../store/sentiment/selectors";
+import { selectSentiment, selectHistory } from "../store/sentiment/selectors";
 import { getSentimentHistoryThunkCreator } from "../store/sentiment/actions";
 
 import { Button } from "@material-ui/core";
@@ -13,6 +13,10 @@ export default function ResultsPage() {
     event.preventDefault();
     dispatch(getSentimentHistoryThunkCreator());
   }
+
+  const history = useSelector(selectHistory());
+
+  console.log(history);
 
   const sentimentScore = useSelector(selectSentiment());
   return (
