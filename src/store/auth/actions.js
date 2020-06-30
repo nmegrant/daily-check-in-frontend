@@ -23,7 +23,6 @@ export function login(email, password) {
 
 export function signup(name, email, password) {
   return async function thunk(dispatch, getState) {
-    console.log(name, email, password);
     const { data: userData } = await axios.post(
       "http://localhost:4000/signup",
       {
@@ -32,7 +31,7 @@ export function signup(name, email, password) {
         password,
       }
     );
-    console.log(userData);
+    dispatch(userLoggedIn(userData));
   };
 }
 
