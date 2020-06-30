@@ -7,6 +7,19 @@ export function scoreCalculated(score) {
   };
 }
 
+export function getSentimentHistoryThunkCreator() {
+  return async function getSentimentHistory(dispatch, getState) {
+    const sentimentHistory = await axios.get(
+      "http://localhost:4000/sentiment",
+      {
+        headers: {
+          Authorization: `Bearer ${getState().auth.accessToken}`,
+        },
+      }
+    );
+  };
+}
+
 export function sendSentimentTextThunkCreator(today, tomorrow, life) {
   return async function sendSentimentText(dispatch, getState) {
     const sentimentScore = await axios.post(
