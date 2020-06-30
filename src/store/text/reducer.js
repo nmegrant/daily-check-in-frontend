@@ -1,4 +1,4 @@
-const initialState = { text: null };
+const initialState = { text: "" };
 
 export default function textReducer(state = initialState, action) {
   switch (action.type) {

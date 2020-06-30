@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -18,6 +18,7 @@ export default function FormPage() {
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
+  const [fieldFocus, setFieldFocus] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -29,10 +30,17 @@ export default function FormPage() {
     history.push("/results");
   }
 
-  // const [record, setRecord] = useState(false);
-
-  console.log(text);
-  // console.log(record);
+  useEffect(() => {
+    if (text !== "" && fieldFocus === "today") {
+      setToday(text);
+    }
+    if (text !== "" && fieldFocus === "tomorrow") {
+      setTomorrow(text);
+    }
+    if (text !== "" && fieldFocus === "life") {
+      setLife(text);
+    }
+  }, [text]);
 
   return (
     <Grid
@@ -56,6 +64,7 @@ export default function FormPage() {
             <Grid item>
               <FormControl>
                 <TextField
+                  onFocus={() => setFieldFocus("today")}
                   label="What did you do today?"
                   placeholder="What did you do today?"
                   multiline
@@ -68,6 +77,7 @@ export default function FormPage() {
             <Grid item>
               <FormControl>
                 <TextField
+                  onFocus={() => setFieldFocus("tomorrow")}
                   label="What do you plan to do tomorrow?"
                   placeholder="What do you plan to do tomorrow?"
                   multiline
@@ -80,6 +90,7 @@ export default function FormPage() {
             <Grid item>
               <FormControl>
                 <TextField
+                  onFocus={() => setFieldFocus("life")}
                   label="How do you feel about your life right now?"
                   placeholder="How do you feel about your life right now?"
                   multiline
