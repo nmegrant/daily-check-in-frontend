@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { signup } from "../store/auth/actions";
 
 import {
   Typography,
@@ -18,6 +21,18 @@ const useStyles = makeStyles({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const dispatch = useDispatch();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    dispatch(signup(name, email, password));
+    setEmail("");
+    setPassword("");
+    setName("");
+  }
 
   return (
     <form>
@@ -36,32 +51,39 @@ export default function SignUp() {
         </Grid>
         <Grid item>
           <TextField
-          // id="email-input"
-          // label="Email"
-          // type="email"
-          // autoComplete="current-email"
-          // variant="outlined"
-          // value={email}
-          // onChange={(e) => setEmail(e.target.value)}
+            id="name-input"
+            label="Name"
+            type="string"
+            autoComplete="current-name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
         </Grid>
         <Grid item>
           <TextField
-          // id="password-input"
-          // label="Password"
-          // type="password"
-          // autoComplete="current-password"
-          // variant="outlined"
-          // value={password}
-          // onChange={(e) => setPassword(e.target.value)}
+            id="email-input"
+            label="Email"
+            type="email"
+            autoComplete="current-email"
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </Grid>
         <Grid item>
-          <Button
-            variant="contained"
-            color="primary"
-            //   onClick={handleSubmit}
-          >
+          <TextField
+            id="password-input"
+            label="Password"
+            type="password"
+            autoComplete="current-password"
+            variant="outlined"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Grid>
+        <Grid item>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
             Sign up
           </Button>
         </Grid>
