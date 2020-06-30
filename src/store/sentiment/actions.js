@@ -17,6 +17,7 @@ export function getSentimentHistoryThunkCreator() {
         },
       }
     );
+    console.log(sentimentHistory.data);
   };
 }
 

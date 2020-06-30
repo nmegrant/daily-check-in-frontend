@@ -11,6 +11,7 @@ export default function ResultsPage() {
 
   function getHistory(event) {
     event.preventDefault();
+    dispatch(getSentimentHistoryThunkCreator());
   }
 
   const sentimentScore = useSelector(selectSentiment());
