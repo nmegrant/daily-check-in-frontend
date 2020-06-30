@@ -60,6 +60,15 @@ export default function FormPage() {
             alignItems="center"
             spacing={3}
           >
+            <p>
+              Feel like talking? To use the speech recognition do the following:
+            </p>
+            <ol>
+              <li>Click Start to begin recording.</li>
+              <li>Talk away . . . </li>
+              <li>Click the box you want your text to appear in.</li>
+              <li>Click stop</li>
+            </ol>
             <SpeechRecognition />
             <Grid item>
               <FormControl>
