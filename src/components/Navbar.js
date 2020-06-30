@@ -1,4 +1,7 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectMe } from "../store/auth/selectors";
+import { logOutUser } from "../store/auth/actions";
 import { Link as RouterLink } from "react-router-dom";
 import {
   AppBar,
@@ -6,24 +9,31 @@ import {
   Button,
   Grid,
   IconButton,
-  useStyles,
+  makeStyles,
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "flex-end",
     flexGrow: 1,
-  },
-  toolbar: {
-    display: flex,
   },
 }));
 
 export default function Navbar() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const me = useSelector(selectMe);
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    dispatch(logOutUser());
+  };
 
   return (
-    <div className={classes.root}>
+    <div>
       <AppBar position="static">
         <Toolbar>
           <Grid container justify="space-between">
@@ -39,9 +49,15 @@ export default function Navbar() {
               </IconButton>
             </Grid>
             <Grid item>
-              <Button color="inherit" component={RouterLink} to="/login">
-                Login
-              </Button>
+              {me ? (
+                <Button color="inherit" onClick={handleLogout}>
+                  Logout
+                </Button>
+              ) : (
+                <Button color="inherit" component={RouterLink} to="/login">
+                  Login
+                </Button>
+              )}
             </Grid>
           </Grid>
         </Toolbar>
