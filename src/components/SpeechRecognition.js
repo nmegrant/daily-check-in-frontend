@@ -5,6 +5,8 @@ import SpeechRecognition from "react-speech-recognition";
 
 import { storeText } from "../store/text/actions";
 
+import Button from "@material-ui/core/Button";
+
 const propTypes = {
   // Props injected by SpeechRecognition
   transcript: PropTypes.string,
@@ -43,8 +45,22 @@ const Dictaphone = ({
 
   return (
     <div>
-      <button onClick={startRecording}>Start</button>
-      <button onClick={stopRecording}>Stop</button>
+      <Button
+        onClick={startRecording}
+        color="primary"
+        variant="contained"
+        style={{ marginRight: "5px" }}
+      >
+        Start
+      </Button>
+      <Button
+        onClick={stopRecording}
+        color="primary"
+        variant="contained"
+        style={{ marginLeft: "5px" }}
+      >
+        Stop
+      </Button>
       <p>{transcript}</p>
     </div>
   );

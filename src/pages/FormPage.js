@@ -52,6 +52,7 @@ export default function FormPage() {
             alignItems="center"
             spacing={3}
           >
+            <SpeechRecognition />
             <Grid item>
               <FormControl>
                 <TextField
@@ -62,7 +63,6 @@ export default function FormPage() {
                   value={today}
                   onChange={(event) => setToday(event.target.value)}
                 />
-                <SpeechRecognition />
               </FormControl>
             </Grid>
             <Grid item>
