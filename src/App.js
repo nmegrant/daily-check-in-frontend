@@ -9,6 +9,7 @@ import AdminPage from "./pages/AdminPage";
 import ResultsPage from "./pages/ResultsPage";
 import LoginPage from "./pages/LoginPage";
 
+//I am changing this for no reason just to have a change.
 function App() {
   const dispatch = useDispatch();
 
