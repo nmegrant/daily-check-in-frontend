@@ -12,6 +12,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
+import CollapsableMenu from "./CollapsableMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,10 +50,8 @@ export default function Navbar() {
               </IconButton>
             </Grid>
             <Grid item>
-              {me ? (
-                <Button color="inherit" onClick={handleLogout}>
-                  Logout
-                </Button>
+              {localStorage.token ? (
+                <CollapsableMenu />
               ) : (
                 <Button color="inherit" component={RouterLink} to="/login">
                   Login
