@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
 
@@ -9,12 +9,30 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 
+import SpeechRecognition from "../components/SpeechRecognition";
+import { textSelector } from "../store/text/selectors";
+
 export default function FormPage() {
+  const text = useSelector(textSelector());
+
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
+  const [fieldFocus, setFieldFocus] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+
+  useEffect(() => {
+    if (fieldFocus === "today") {
+      setToday(text);
+    }
+    if (fieldFocus === "tomorrow") {
+      setTomorrow(text);
+    }
+    if (fieldFocus === "life") {
+      setLife(text);
+    }
+  }, [text]);
 
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
@@ -42,9 +60,20 @@ export default function FormPage() {
             alignItems="center"
             spacing={3}
           >
+            <p>
+              Feel like talking? To use the speech recognition do the following:
+            </p>
+            <ol>
+              <li>Click Start to begin recording.</li>
+              <li>Talk away . . . </li>
+              <li>Click the box you want your text to appear in.</li>
+              <li>Click stop</li>
+            </ol>
+            <SpeechRecognition />
             <Grid item>
               <FormControl>
                 <TextField
+                  onFocus={() => setFieldFocus("today")}
                   label="What did you do today?"
                   placeholder="What did you do today?"
                   multiline
@@ -57,6 +86,7 @@ export default function FormPage() {
             <Grid item>
               <FormControl>
                 <TextField
+                  onFocus={() => setFieldFocus("tomorrow")}
                   label="What do you plan to do tomorrow?"
                   placeholder="What do you plan to do tomorrow?"
                   multiline
@@ -69,6 +99,7 @@ export default function FormPage() {
             <Grid item>
               <FormControl>
                 <TextField
+                  onFocus={() => setFieldFocus("life")}
                   label="How do you feel about your life right now?"
                   placeholder="How do you feel about your life right now?"
                   multiline
