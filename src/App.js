@@ -10,6 +10,7 @@ import AdminPage from "./pages/AdminPage";
 import ResultsPage from "./pages/ResultsPage";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
+import SignUp from "./pages/SignUp";
 
 //I am changing this for no reason just to have a change.
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Route path="/admin" component={AdminPage} />
         <Route path="/results" component={ResultsPage} />
         <Route path="/login">{me ? <Redirect to="/" /> : <LoginPage />}</Route>
+        <Route path="/signup" component={SignUp} />
       </Switch>
     </div>
   );

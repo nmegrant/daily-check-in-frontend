@@ -21,6 +21,20 @@ export function login(email, password) {
   };
 }
 
+export function signup(name, email, password) {
+  return async function thunk(dispatch, getState) {
+    const { data: userData } = await axios.post(
+      "http://localhost:4000/signup",
+      {
+        name,
+        email,
+        password,
+      }
+    );
+    dispatch(userLoggedIn(userData));
+  };
+}
+
 export function getUserWithStoredToken() {
   return async function thunk(dispatch, getState) {
     if (localStorage.getItem("token")) {

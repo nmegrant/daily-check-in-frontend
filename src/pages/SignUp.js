@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../store/auth/actions";
+
+import { signup } from "../store/auth/actions";
+
 import {
   Typography,
   TextField,
@@ -17,17 +19,19 @@ const useStyles = makeStyles({
   },
 });
 
-export default function LoginPage() {
+export default function SignUp() {
+  const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
-  const classes = useStyles();
 
   function handleSubmit(event) {
     event.preventDefault();
-    dispatch(login(email, password));
+    dispatch(signup(name, email, password));
     setEmail("");
     setPassword("");
+    setName("");
   }
 
   return (
@@ -42,8 +46,19 @@ export default function LoginPage() {
       >
         <Grid item>
           <Typography color="secondary" variant="h3">
-            Login
+            Sign Up
           </Typography>
+        </Grid>
+        <Grid item>
+          <TextField
+            id="name-input"
+            label="Name"
+            type="string"
+            autoComplete="current-name"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
         </Grid>
         <Grid item>
           <TextField
@@ -69,11 +84,11 @@ export default function LoginPage() {
         </Grid>
         <Grid item>
           <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Log in
+            Sign up
           </Button>
         </Grid>
         <p>
-          Not a member? Don't miss out! <Link to="/signup">Sign up</Link> now!
+          Already a member? <Link to="/login">Log in</Link> now!
         </p>
       </Grid>
     </form>
