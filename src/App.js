@@ -8,6 +8,7 @@ import FormPage from "./pages/FormPage";
 import AdminPage from "./pages/AdminPage";
 import ResultsPage from "./pages/ResultsPage";
 import LoginPage from "./pages/LoginPage";
+import Navbar from "./components/Navbar";
 
 //I am changing this for no reason just to have a change.
 function App() {
@@ -19,7 +20,8 @@ function App() {
 
   return (
     <div className="App">
-      <Switch> 
+      <Navbar />
+      <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
         <Route path="/admin" component={AdminPage} />
