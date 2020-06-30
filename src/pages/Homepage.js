@@ -32,7 +32,11 @@ export default function Homepage() {
         <ListItem>For SOS helpline dial: 0900 0767</ListItem>
         <ListItem>For ChildLine dial: 0800 0432</ListItem>
       </List>
-      <Button onClick={() => history.push("/form")}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => history.push("/form")}
+      >
         Go to Evaluation Form
       </Button>
     </Box>
