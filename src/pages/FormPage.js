@@ -9,12 +9,16 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 
+import SpeechRecognition from "../components/SpeechRecognition";
+
 export default function FormPage() {
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const [record, setRecord] = useState(null);
 
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
@@ -52,6 +56,19 @@ export default function FormPage() {
                   value={today}
                   onChange={(event) => setToday(event.target.value)}
                 />
+                <div>
+                  {record === null ? (
+                    // <Button
+                    //   onClick={() => (
+                    //     <div>
+                    <SpeechRecognition />
+                  ) : //     </div>
+                  //   )}
+                  // >
+                  //   Start Recording
+                  // </Button>
+                  null}
+                </div>
               </FormControl>
             </Grid>
             <Grid item>
