@@ -1,10 +1,11 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../store/auth/actions";
 import {
   Typography,
   TextField,
   Grid,
   Button,
-  Paper,
   makeStyles,
 } from "@material-ui/core";
 
@@ -18,13 +19,14 @@ const useStyles = makeStyles({
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
   const classes = useStyles();
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    // TODO
-    console.log("TODO login with:", email, password);
+    dispatch(login(email, password));
+    setEmail("");
+    setPassword("");
   }
 
   return (
