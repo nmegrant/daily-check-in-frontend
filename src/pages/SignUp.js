@@ -45,9 +45,7 @@ export default function SignUp() {
         spacing="3"
       >
         <Grid item>
-          <Typography color="secondary" variant="h3">
-            Sign Up
-          </Typography>
+          <Typography variant="h3">Sign Up</Typography>
         </Grid>
         <Grid item>
           <TextField

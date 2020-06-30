@@ -43,14 +43,8 @@ export default function FormPage() {
   }
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="center"
-      alignItems="center"
-      spacing={3}
-    >
-      <Grid item>
+    <Grid container direction="row" justify="center" alignItems="center">
+      <Grid item style={{ width: "100%" }}>
         <h1>How are you doing?</h1>
         <form>
           <Grid
@@ -70,8 +64,8 @@ export default function FormPage() {
               <li>Click stop</li>
             </ol>
             <SpeechRecognition />
-            <Grid item>
-              <FormControl>
+            <Grid item style={{ width: "100%" }}>
+              <FormControl style={{ width: "55%" }}>
                 <TextField
                   onFocus={() => setFieldFocus("today")}
                   label="What did you do today?"
@@ -83,8 +77,8 @@ export default function FormPage() {
                 />
               </FormControl>
             </Grid>
-            <Grid item>
-              <FormControl>
+            <Grid item style={{ width: "100%" }}>
+              <FormControl style={{ width: "55%" }}>
                 <TextField
                   onFocus={() => setFieldFocus("tomorrow")}
                   label="What do you plan to do tomorrow?"
@@ -96,8 +90,8 @@ export default function FormPage() {
                 />
               </FormControl>
             </Grid>
-            <Grid item>
-              <FormControl>
+            <Grid item style={{ width: "100%" }}>
+              <FormControl style={{ width: "55%" }}>
                 <TextField
                   onFocus={() => setFieldFocus("life")}
                   label="How do you feel about your life right now?"

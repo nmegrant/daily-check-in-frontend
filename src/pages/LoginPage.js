@@ -41,9 +41,7 @@ export default function LoginPage() {
         spacing="3"
       >
         <Grid item>
-          <Typography color="secondary" variant="h3">
-            Login
-          </Typography>
+          <Typography variant="h3">Login</Typography>
         </Grid>
         <Grid item>
           <TextField

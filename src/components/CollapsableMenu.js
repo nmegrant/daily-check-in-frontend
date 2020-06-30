@@ -28,7 +28,7 @@ export default function CollapsableMenu(props) {
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
-        color="secondary"
+        style={{ color: "white" }}
       >
         {me}
       </Button>
