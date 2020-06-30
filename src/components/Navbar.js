@@ -25,13 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const me = useSelector(selectMe);
-
-  const handleLogout = (event) => {
-    event.preventDefault();
-    dispatch(logOutUser());
-  };
 
   return (
     <div>
