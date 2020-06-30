@@ -15,7 +15,6 @@ export default function ResultsPage() {
   }
 
   const history = useSelector(selectHistory());
-
   console.log(history);
 
   const sentimentScore = useSelector(selectSentiment());
@@ -26,6 +25,11 @@ export default function ResultsPage() {
       <Button variant="contained" color="primary" onClick={getHistory}>
         See History
       </Button>
+      {history
+        ? history.map((i) => {
+            return <p key={i.id}>{i.score}</p>;
+          })
+        : null}
     </div>
   );
 }
