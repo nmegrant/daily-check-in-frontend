@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
 
@@ -10,15 +10,16 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 
 import SpeechRecognition from "../components/SpeechRecognition";
+import { textSelector } from "../store/text/selectors";
 
 export default function FormPage() {
+  const text = useSelector(textSelector());
+
   const [today, setToday] = useState("");
   const [tomorrow, setTomorrow] = useState("");
   const [life, setLife] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-
-  const [record, setRecord] = useState(null);
 
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
@@ -27,6 +28,11 @@ export default function FormPage() {
     setLife("");
     history.push("/results");
   }
+
+  // const [record, setRecord] = useState(false);
+
+  console.log(text);
+  // console.log(record);
 
   return (
     <Grid
@@ -56,19 +62,7 @@ export default function FormPage() {
                   value={today}
                   onChange={(event) => setToday(event.target.value)}
                 />
-                <div>
-                  {record === null ? (
-                    // <Button
-                    //   onClick={() => (
-                    //     <div>
-                    <SpeechRecognition />
-                  ) : //     </div>
-                  //   )}
-                  // >
-                  //   Start Recording
-                  // </Button>
-                  null}
-                </div>
+                <SpeechRecognition />
               </FormControl>
             </Grid>
             <Grid item>

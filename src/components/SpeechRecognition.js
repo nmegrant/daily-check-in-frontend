@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import SpeechRecognition from "react-speech-recognition";
+
+import { storeText } from "../store/text/actions";
 
 const propTypes = {
   // Props injected by SpeechRecognition
@@ -20,31 +23,27 @@ const Dictaphone = ({
   stopListening,
   browserSupportsSpeechRecognition,
 }) => {
-  const [newText, setNewText] = useState(true);
+  const dispatch = useDispatch();
   if (!browserSupportsSpeechRecognition) {
     return null;
   }
 
-  //   const startRecording = () => {
-  //     if (newText) {
-  //       startListening();
-  //     }
-  //   };
-
-  if (newText === true) {
+  const startRecording = (event) => {
+    event.preventDefault();
     startListening();
-  }
+  };
 
-  const stopRecording = () => {
-    setNewText(false);
+  const stopRecording = (event) => {
+    event.preventDefault();
     const text = finalTranscript;
     resetTranscript();
     stopListening();
+    dispatch(storeText(text));
   };
 
   return (
     <div>
-      {/* <button onClick={startRecording}>Start</button> */}
+      <button onClick={startRecording}>Start</button>
       <button onClick={stopRecording}>Stop</button>
       <p>{transcript}</p>
     </div>
