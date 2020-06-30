@@ -22,6 +22,18 @@ export default function FormPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    if (fieldFocus === "today") {
+      setToday(text);
+    }
+    if (fieldFocus === "tomorrow") {
+      setTomorrow(text);
+    }
+    if (fieldFocus === "life") {
+      setLife(text);
+    }
+  }, [text]);
+
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
     setToday("");
@@ -29,18 +41,6 @@ export default function FormPage() {
     setLife("");
     history.push("/results");
   }
-
-  useEffect(() => {
-    if (text !== "" && fieldFocus === "today") {
-      setToday(text);
-    }
-    if (text !== "" && fieldFocus === "tomorrow") {
-      setTomorrow(text);
-    }
-    if (text !== "" && fieldFocus === "life") {
-      setLife(text);
-    }
-  }, [text]);
 
   return (
     <Grid
