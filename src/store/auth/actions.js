@@ -7,7 +7,7 @@ function userLoggedIn(userData) {
   return { type: USER_LOGGED_IN, payload: userData };
 }
 
-function logOutUser() {
+export function logOutUser() {
   return { type: LOG_OUT_USER, payload: null };
 }
 
@@ -19,10 +19,6 @@ export function login(email, password) {
     });
     dispatch(userLoggedIn(userData));
   };
-}
-
-export function logout(dispatch, getState) {
-  dispatch(logOutUser());
 }
 
 export function getUserWithStoredToken() {

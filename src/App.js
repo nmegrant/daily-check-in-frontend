@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Switch, Route, Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMe } from "./store/auth/selectors";
 import { getUserWithStoredToken } from "./store/auth/actions";
 import "./App.css";
 import Homepage from "./pages/Homepage";
@@ -8,10 +9,12 @@ import FormPage from "./pages/FormPage";
 import AdminPage from "./pages/AdminPage";
 import ResultsPage from "./pages/ResultsPage";
 import LoginPage from "./pages/LoginPage";
+import Navbar from "./components/Navbar";
 
 //I am changing this for no reason just to have a change.
 function App() {
   const dispatch = useDispatch();
+  const me = useSelector(selectMe);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -19,12 +22,13 @@ function App() {
 
   return (
     <div className="App">
-      <Switch> 
+      <Navbar />
+      <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
         <Route path="/admin" component={AdminPage} />
         <Route path="/results" component={ResultsPage} />
-        <Route path="/login" component={LoginPage} />
+        <Route path="/login">{me ? <Redirect to="/" /> : <LoginPage />}</Route>
       </Switch>
     </div>
   );
