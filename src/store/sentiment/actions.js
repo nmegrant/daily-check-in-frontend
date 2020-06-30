@@ -9,7 +9,6 @@ export function scoreCalculated(score) {
 
 export function sendSentimentTextThunkCreator(today, tomorrow, life) {
   return async function sendSentimentText(dispatch, getState) {
-    console.log("current state", getState().auth.accessToken);
     const sentimentScore = await axios.post(
       "http://localhost:4000/sentiment",
       {
@@ -23,6 +22,6 @@ export function sendSentimentTextThunkCreator(today, tomorrow, life) {
         },
       }
     );
-    dispatch(scoreCalculated(sentimentScore.data.averageScore));
+    dispatch(scoreCalculated(sentimentScore.data.score));
   };
 }
