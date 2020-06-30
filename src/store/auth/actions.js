@@ -28,12 +28,17 @@ export function logout(dispatch, getState) {
 export function getUserWithStoredToken() {
   return async function thunk(dispatch, getState) {
     if (localStorage.getItem("token")) {
-      const { data: userData } = await axios.get("http://localhost:4000/me", {
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-        },
-      });
-      dispatch(userLoggedIn({ ...userData, token: localStorage.token }));
+      try {
+        const response = await axios.get("http://localhost:4000/me", {
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+          },
+        });
+        dispatch(userLoggedIn({ ...response.data, token: localStorage.token }));
+      } catch (e) {
+        //jwt is invalid
+        dispatch(logOutUser());
+      }
     }
   };
 }
