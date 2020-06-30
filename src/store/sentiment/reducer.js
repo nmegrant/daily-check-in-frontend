@@ -5,7 +5,7 @@ export default function sentimentReducer(state = intialState, action) {
     case "NEW_SCORE":
       return { ...state, score: action.payload };
     case "GET_HISTORY":
-      return { ...state, history: action.payload };
+      return { ...state, history: [...action.payload] };
     default:
       return state;
   }

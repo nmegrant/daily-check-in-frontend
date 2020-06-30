@@ -7,6 +7,13 @@ export function scoreCalculated(score) {
   };
 }
 
+export function getHistory(history) {
+  return {
+    type: "GET_HISTORY",
+    payload: history,
+  };
+}
+
 export function getSentimentHistoryThunkCreator() {
   return async function getSentimentHistory(dispatch, getState) {
     const sentimentHistory = await axios.get(
@@ -17,7 +24,7 @@ export function getSentimentHistoryThunkCreator() {
         },
       }
     );
-    console.log(sentimentHistory.data);
+    dispatch(getHistory(sentimentHistory));
   };
 }
 
