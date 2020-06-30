@@ -25,6 +25,16 @@ export default function Homepage() {
         <Typography variant="h3" style={{ marginTop: "30px" }}>
           Sentiment Assessment
         </Typography>
+        <Grid>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => history.push("/form")}
+            style={{ marginTop: "30px" }}
+          >
+            Start Assessment
+          </Button>
+        </Grid>
         <h3>
           Our site uses the{" "}
           <Link href="https://www.npmjs.com/package/sentiment">sentiment</Link>{" "}
@@ -63,22 +73,6 @@ export default function Homepage() {
             </Link>
           </ListItem>
         </List>
-      </Grid>
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        spacing={3}
-      >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => history.push("/form")}
-          style={{ marginTop: "30px" }}
-        >
-          Start Assessment
-        </Button>
       </Grid>
     </Grid>
   );
