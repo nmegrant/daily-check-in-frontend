@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMe, selectAdmin } from "./store/auth/selectors";
+import { selectAdmin } from "./store/auth/selectors";
 import { getUserWithStoredToken } from "./store/auth/actions";
 import { selectMessageInfo } from "./store/appstate/selectors";
 import "./App.css";
@@ -16,11 +16,8 @@ import AlertBox from "./components/AlertBox";
 
 function App() {
   const dispatch = useDispatch();
-  const me = useSelector(selectMe);
-  const admin = useSelector(selectAdmin);
+  const [admin, setAdmin] = useState(useSelector(selectAdmin));
   const message = useSelector(selectMessageInfo());
-
-  console.log(admin);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -35,9 +32,11 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
-        <Route path="/admin" component={AdminPage} />
+        <Route exact path="/admin">
+          {admin === false ? <AdminPage /> : <Redirect to="/" />}
+        </Route>
         <Route path="/results" component={ResultsPage} />
-        <Route path="/login">{me ? <Redirect to="/" /> : <LoginPage />}</Route>
+        <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUp} />
       </Switch>
     </div>
