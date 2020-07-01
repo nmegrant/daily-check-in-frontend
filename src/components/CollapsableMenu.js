@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMe } from "../store/auth/selectors";
 import { logOutUser } from "../store/auth/actions";
+import { showMessageThunkCreator } from "../store/appstate/actions";
 import { Button, Menu, MenuItem } from "@material-ui/core";
 
 export default function CollapsableMenu(props) {
@@ -20,6 +21,7 @@ export default function CollapsableMenu(props) {
   const handleLogout = () => {
     handleClose();
     dispatch(logOutUser());
+    dispatch(showMessageThunkCreator("Logged out", "info"));
   };
 
   return (

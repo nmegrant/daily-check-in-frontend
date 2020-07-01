@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showMessageThunkCreator } from "../appstate/actions";
 
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
 export const LOG_OUT_USER = "LOG_OUT_USER";
@@ -13,25 +14,40 @@ export function logOutUser() {
 
 export function login(email, password) {
   return async function thunk(dispatch, getState) {
-    const { data: userData } = await axios.post("http://localhost:4000/login", {
-      email,
-      password,
-    });
-    dispatch(userLoggedIn(userData));
+    try {
+      const { data: userData } = await axios.post(
+        "http://localhost:4000/login",
+        {
+          email,
+          password,
+        }
+      );
+      dispatch(userLoggedIn(userData));
+      dispatch(showMessageThunkCreator("Logged in", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
+    }
   };
 }
 
 export function signup(name, email, password) {
   return async function thunk(dispatch, getState) {
-    const { data: userData } = await axios.post(
-      "http://localhost:4000/signup",
-      {
-        name,
-        email,
-        password,
-      }
-    );
-    dispatch(userLoggedIn(userData));
+    try {
+      const { data: userData } = await axios.post(
+        "http://localhost:4000/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      dispatch(userLoggedIn(userData));
+      dispatch(showMessageThunkCreator("Signed up and logged in", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
+    }
   };
 }
 
@@ -48,6 +64,7 @@ export function getUserWithStoredToken() {
       } catch (e) {
         //jwt is invalid
         dispatch(logOutUser());
+        dispatch(showMessageThunkCreator("Session expired", "info"));
       }
     }
   };
