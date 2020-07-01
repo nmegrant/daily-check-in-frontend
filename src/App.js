@@ -18,11 +18,16 @@ function App() {
   const dispatch = useDispatch();
   const message = useSelector(selectMessageInfo());
 
-  const [admin, setAdmin] = useState(true);
+  const adminState = useSelector(selectAdmin);
+  // const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   setAdmin(adminState);
+  // }, [adminState]);
 
   return (
     <div className="App">
@@ -34,7 +39,7 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
         <Route exact path="/admin">
-          {admin ? <AdminPage /> : <Redirect to="/" />}
+          {adminState ? <AdminPage /> : <Redirect to="/" />}
         </Route>
         <Route path="/results" component={ResultsPage} />
         <Route path="/login" component={LoginPage} />
