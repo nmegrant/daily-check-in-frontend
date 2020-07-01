@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserListThunkCreator } from "../store/admin/actions";
+import { selectUserList } from "../store/admin/selectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -23,6 +24,7 @@ const useStyles = makeStyles({
 export default function AdminPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const userList = useSelector(selectUserList());
 
   useEffect(() => {
     dispatch(getUserListThunkCreator());
