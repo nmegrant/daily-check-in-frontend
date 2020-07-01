@@ -64,6 +64,7 @@ export function getUserWithStoredToken() {
       } catch (e) {
         //jwt is invalid
         dispatch(logOutUser());
+        dispatch(showMessageThunkCreator("Logged out", "info"));
       }
     }
   };
