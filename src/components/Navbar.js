@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectMe } from "../store/auth/selectors";
-import { logOutUser } from "../store/auth/actions";
+// import { useSelector, useDispatch } from "react-redux";
+// import { selectMe } from "../store/auth/selectors";
+// import { logOutUser } from "../store/auth/actions";
 import { Link as RouterLink } from "react-router-dom";
 import {
   AppBar,

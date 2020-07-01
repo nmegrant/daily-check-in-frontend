@@ -16,8 +16,9 @@ import AlertBox from "./components/AlertBox";
 
 function App() {
   const dispatch = useDispatch();
-  const [admin, setAdmin] = useState(useSelector(selectAdmin));
   const message = useSelector(selectMessageInfo());
+
+  const [admin, setAdmin] = useState(true);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -33,7 +34,7 @@ function App() {
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
         <Route exact path="/admin">
-          {admin === false ? <AdminPage /> : <Redirect to="/" />}
+          {admin ? <AdminPage /> : <Redirect to="/" />}
         </Route>
         <Route path="/results" component={ResultsPage} />
         <Route path="/login" component={LoginPage} />

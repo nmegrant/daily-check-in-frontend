@@ -1,12 +1,10 @@
-import axios from "axios";
+initialState = { userlist: [], user: {} };
 
-export function getUserListThunkCreator() {
-  return async function getUser(dispatch, getState) {
-    const users = await axios.get("http://localhost:4000/admin/users", {
-      headers: {
-        Authorization: `Bearer ${getState().auth.accessToken}`,
-      },
-    });
-    console.log(users);
-  };
+export default function adminReducer(state = initialState, action) {
+  switch (action.type) {
+    case "USER_LIST_FETCHED":
+      return { ...state, userList: action.payload };
+    default:
+      return state;
+  }
 }

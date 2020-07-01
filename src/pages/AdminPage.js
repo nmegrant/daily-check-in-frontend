@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getUserListThunkCreator } from "../store/admin/actions";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -20,6 +22,11 @@ const useStyles = makeStyles({
 
 export default function AdminPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserListThunkCreator());
+  }, [dispatch]);
 
   const rows = [
     { name: "Alicia", score: 1 },
