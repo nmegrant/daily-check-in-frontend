@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectMe } from "./store/auth/selectors";
+import { selectMe, selectAdmin } from "./store/auth/selectors";
 import { getUserWithStoredToken } from "./store/auth/actions";
 import { selectMessageInfo } from "./store/appstate/selectors";
 import "./App.css";
@@ -17,7 +17,10 @@ import AlertBox from "./components/AlertBox";
 function App() {
   const dispatch = useDispatch();
   const me = useSelector(selectMe);
+  const admin = useSelector(selectAdmin);
   const message = useSelector(selectMessageInfo());
+
+  console.log(admin);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
