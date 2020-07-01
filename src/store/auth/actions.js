@@ -14,26 +14,40 @@ export function logOutUser() {
 
 export function login(email, password) {
   return async function thunk(dispatch, getState) {
-    const { data: userData } = await axios.post("http://localhost:4000/login", {
-      email,
-      password,
-    });
-    dispatch(userLoggedIn(userData));
-    dispatch(showMessageThunkCreator("Logged in", "success"));
+    try {
+      const { data: userData } = await axios.post(
+        "http://localhost:4000/login",
+        {
+          email,
+          password,
+        }
+      );
+      dispatch(userLoggedIn(userData));
+      dispatch(showMessageThunkCreator("Logged in", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch(showMessageThunkCreator("Log in failed", "error"));
+    }
   };
 }
 
 export function signup(name, email, password) {
   return async function thunk(dispatch, getState) {
-    const { data: userData } = await axios.post(
-      "http://localhost:4000/signup",
-      {
-        name,
-        email,
-        password,
-      }
-    );
-    dispatch(userLoggedIn(userData));
+    try {
+      const { data: userData } = await axios.post(
+        "http://localhost:4000/signup",
+        {
+          name,
+          email,
+          password,
+        }
+      );
+      dispatch(userLoggedIn(userData));
+      dispatch(showMessageThunkCreator("Signed up and logged in", "success"));
+    } catch (error) {
+      console.log(error);
+      dispatch(showMessageThunkCreator("Sign up failed", "error"));
+    }
   };
 }
 
