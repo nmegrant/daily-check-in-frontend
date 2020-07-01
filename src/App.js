@@ -3,6 +3,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMe } from "./store/auth/selectors";
 import { getUserWithStoredToken } from "./store/auth/actions";
+import { selectMessageInfo } from "./store/appstate/selectors";
 import "./App.css";
 import Homepage from "./pages/Homepage";
 import FormPage from "./pages/FormPage";
@@ -11,11 +12,12 @@ import ResultsPage from "./pages/ResultsPage";
 import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import SignUp from "./pages/SignUp";
+import AlertBox from "./components/AlertBox";
 
-//I am changing this for no reason just to have a change.
 function App() {
   const dispatch = useDispatch();
   const me = useSelector(selectMe);
+  const message = useSelector(selectMessageInfo());
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
@@ -24,6 +26,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      {message !== null ? (
+        <AlertBox text={message.message} severity={message.severity} />
+      ) : null}
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
