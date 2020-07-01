@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showMessageThunkCreator } from "../appstate/actions";
 
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
 export const LOG_OUT_USER = "LOG_OUT_USER";
@@ -18,6 +19,7 @@ export function login(email, password) {
       password,
     });
     dispatch(userLoggedIn(userData));
+    dispatch(showMessageThunkCreator("Logged in", "success"));
   };
 }
 
