@@ -18,6 +18,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ### Goals
 
 * Collaborate with teammates using proper git workflow.
+  * Use feature branches for development work.
+  * Perform code reviews before merging feature branches. 
 * Continue gaining experience in creating fullstack apps using React-Redux for the frontend and a RESTful API using Express.js for the backend.
 * Experiment with new language-related libraries [react-speech-recognition](https://www.npmjs.com/package/react-speech-recognition) and [sentiment](https://www.npmjs.com/package/sentiment)
 * Display data in a visually appealing manner using [D3.js](https://d3js.org/)
