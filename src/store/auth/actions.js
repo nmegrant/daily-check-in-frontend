@@ -26,7 +26,7 @@ export function login(email, password) {
       dispatch(showMessageThunkCreator("Logged in", "success"));
     } catch (error) {
       console.log(error);
-      dispatch(showMessageThunkCreator("Log in failed", "error"));
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
     }
   };
 }
@@ -46,7 +46,7 @@ export function signup(name, email, password) {
       dispatch(showMessageThunkCreator("Signed up and logged in", "success"));
     } catch (error) {
       console.log(error);
-      dispatch(showMessageThunkCreator("Sign up failed", "error"));
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
     }
   };
 }
@@ -64,7 +64,7 @@ export function getUserWithStoredToken() {
       } catch (e) {
         //jwt is invalid
         dispatch(logOutUser());
-        dispatch(showMessageThunkCreator("Logged out", "info"));
+        dispatch(showMessageThunkCreator("Session expired", "info"));
       }
     }
   };
