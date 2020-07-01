@@ -30,13 +30,6 @@ export default function AdminPage() {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
 
-  const rows = [
-    { name: "Alicia", score: 1 },
-    { name: "Cary", score: 2 },
-    { name: "Diane", score: 1 },
-    { name: "Will", score: 3 },
-  ];
-
   return (
     <Grid container justify="center">
       <h1>List of users</h1>
@@ -54,10 +47,10 @@ export default function AdminPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
+            {userList.map((userList, index) => (
+              <TableRow key={index}>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {userList.name}
                 </TableCell>
                 <TableCell align="right">
                   <Button variant="contained" color="primary">

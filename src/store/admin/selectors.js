@@ -1,5 +1,5 @@
 export function selectUserList() {
   return (state) => {
-    return state.admin.userList;
+    return state.admin.userlist;
   };
 }

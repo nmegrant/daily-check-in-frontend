@@ -1,9 +1,9 @@
-initialState = { userlist: [], user: {} };
+const initialState = { userlist: [], user: {} };
 
 export default function adminReducer(state = initialState, action) {
   switch (action.type) {
     case "USER_LIST_FETCHED":
-      return { ...state, userList: action.payload };
+      return { ...state, userlist: [...action.payload] };
     default:
       return state;
   }
