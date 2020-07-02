@@ -15,20 +15,6 @@ export function getData(userData) {
   };
 }
 
-export function appLoading() {
-  return {
-    type: "LOADING",
-    payload: true,
-  };
-}
-
-export function appDoneLoading() {
-  return {
-    type: "DONE_LOADING",
-    payload: false,
-  };
-}
-
 export function getUserListThunkCreator() {
   return async function getUser(dispatch, getState) {
     try {
