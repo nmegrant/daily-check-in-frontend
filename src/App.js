@@ -7,7 +7,7 @@ import {
   selectMessageInfo,
   selectLoadingStatus,
 } from "./store/appstate/selectors";
-import "./App.css";
+
 import Homepage from "./pages/Homepage";
 import FormPage from "./pages/FormPage";
 import AdminPage from "./pages/AdminPage";
