@@ -1,46 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
 import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
+import FormInputSpeech from "../components/FormInputSpeech";
 
-import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 
-import SpeechRecognition from "../components/SpeechRecognition";
-import { textSelector } from "../store/text/selectors";
+const initialValues = { today: "", tomorrow: "", life: "" };
+const initialMics = { today: false, tomorrow: false, life: false };
 
 export default function FormPage() {
-  const text = useSelector(textSelector());
-
-  const [today, setToday] = useState("");
-  const [tomorrow, setTomorrow] = useState("");
-  const [life, setLife] = useState("");
-  const [fieldFocus, setFieldFocus] = useState("");
+  const [values, setValues] = useState(initialValues);
+  const [mics, setMics] = useState(initialMics);
   const dispatch = useDispatch();
   const history = useHistory();
 
-  useEffect(() => {
-    if (fieldFocus === "today") {
-      setToday(text);
-    }
-    if (fieldFocus === "tomorrow") {
-      setTomorrow(text);
-    }
-    if (fieldFocus === "life") {
-      setLife(text);
-    }
-  }, [text]);
-
-  function submitText() {
+  const submitForm = () => {
+    const { today, tomorrow, life } = values;
+    console.log(`today: ${today} \t tomorrow: ${tomorrow} \t life: ${life}`);
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
-    setToday("");
-    setTomorrow("");
-    setLife("");
+    setValues(initialValues);
     history.push("/results");
-  }
+  };
 
   return (
     <Grid container direction="row" justify="center" alignItems="center">
@@ -54,56 +36,43 @@ export default function FormPage() {
             alignItems="center"
             spacing={3}
           >
-            <p>
-              Feel like talking? To use the speech recognition do the following:
-            </p>
-            <ol>
-              <li>Click Start to begin recording.</li>
-              <li>Talk away . . . </li>
-              <li>Click the box you want your text to appear in.</li>
-              <li>Click stop</li>
-            </ol>
-            <SpeechRecognition />
             <Grid item style={{ width: "100%" }}>
-              <FormControl style={{ width: "55%" }}>
-                <TextField
-                  onFocus={() => setFieldFocus("today")}
-                  label="What did you do today?"
-                  placeholder="What did you do today?"
-                  multiline
-                  variant="filled"
-                  value={today}
-                  onChange={(event) => setToday(event.target.value)}
-                />
-              </FormControl>
+              <FormInputSpeech
+                name={"today"}
+                label={"What did you do today?"}
+                values={values}
+                setValues={setValues}
+                mics={mics}
+                setMics={setMics}
+                initialMics={initialMics}
+                styleFormControl={{ width: "55%" }}
+              />
             </Grid>
             <Grid item style={{ width: "100%" }}>
-              <FormControl style={{ width: "55%" }}>
-                <TextField
-                  onFocus={() => setFieldFocus("tomorrow")}
-                  label="What do you plan to do tomorrow?"
-                  placeholder="What do you plan to do tomorrow?"
-                  multiline
-                  variant="filled"
-                  value={tomorrow}
-                  onChange={(event) => setTomorrow(event.target.value)}
-                />
-              </FormControl>
+              <FormInputSpeech
+                name={"tomorrow"}
+                label={"What do you plan to do tomorrow?"}
+                values={values}
+                setValues={setValues}
+                mics={mics}
+                setMics={setMics}
+                initialMics={initialMics}
+                styleFormControl={{ width: "55%" }}
+              />
             </Grid>
             <Grid item style={{ width: "100%" }}>
-              <FormControl style={{ width: "55%" }}>
-                <TextField
-                  onFocus={() => setFieldFocus("life")}
-                  label="How do you feel about your life right now?"
-                  placeholder="How do you feel about your life right now?"
-                  multiline
-                  variant="filled"
-                  value={life}
-                  onChange={(event) => setLife(event.target.value)}
-                />
-              </FormControl>
+              <FormInputSpeech
+                name={"life"}
+                label={"How do you feel about your life right now?"}
+                values={values}
+                setValues={setValues}
+                mics={mics}
+                setMics={setMics}
+                initialMics={initialMics}
+                styleFormControl={{ width: "55%" }}
+              />
             </Grid>
-            <Button onClick={submitText} color="primary" variant="contained">
+            <Button onClick={submitForm} color="primary" variant="contained">
               Submit
             </Button>
           </Grid>
