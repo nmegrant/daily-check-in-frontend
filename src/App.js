@@ -39,10 +39,9 @@ function App() {
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route path="/form" component={FormPage} />
-        {/* <Route exact path="/admin">
-          {adminState !== false ? <Redirect to="/" /> : <AdminPage />}
-        </Route> */}
-        <Route path="/admin" component={AdminPage} />
+        <Route exact path="/admin">
+          {adminState === false ? <Redirect to="/" /> : <AdminPage />}
+        </Route>
         <Route path="/results" component={ResultsPage} />
         <Route path="/login">{me ? <Redirect to="/" /> : <LoginPage />}</Route>
         <Route path="/signup" component={SignUp} />

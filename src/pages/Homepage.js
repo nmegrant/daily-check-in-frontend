@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, Link as BrowserLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import {
   Typography,
@@ -20,9 +20,6 @@ export default function Homepage() {
       alignItems="center"
       spacing={3}
     >
-      <BrowserLink exact to="/admin">
-        go to admin
-      </BrowserLink>
       <Grid>
         {" "}
         <Typography variant="h3" style={{ marginTop: "30px" }}>
