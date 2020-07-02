@@ -30,8 +30,6 @@ export default function AdminPage() {
   const userList = useSelector(selectUserList());
   const user = useSelector(selectUserData());
 
-  console.log(user);
-
   useEffect(() => {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
