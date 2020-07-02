@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { selectMe } from "../store/auth/selectors";
 import { logOutUser } from "../store/auth/actions";
 import { showMessageThunkCreator } from "../store/appstate/actions";
@@ -9,6 +10,12 @@ export default function CollapsableMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const me = useSelector(selectMe);
+  const history = useHistory();
+
+  const handleNav = (event) => {
+    event.preventDefault();
+    history.push("/results");
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -41,7 +48,7 @@ export default function CollapsableMenu(props) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>My results</MenuItem>
+        <MenuItem onClick={handleNav}>My results</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>

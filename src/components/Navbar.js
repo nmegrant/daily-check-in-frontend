@@ -1,32 +1,12 @@
 import React from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import { selectMe } from "../store/auth/selectors";
-// import { logOutUser } from "../store/auth/actions";
 import { Link as RouterLink } from "react-router-dom";
-import {
-  AppBar,
-  Toolbar,
-  Button,
-  Grid,
-  IconButton,
-  // makeStyles,
-} from "@material-ui/core";
+import { AppBar, Toolbar, Button, Grid, IconButton } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import CollapsableMenu from "./CollapsableMenu";
 import { selectAdmin } from "../store/auth/selectors";
 import { useSelector } from "react-redux";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     display: "flex",
-//     flexDirection: "row",
-//     justifyContent: "flex-end",
-//     flexGrow: 1,
-//   },
-// }));
-
 export default function Navbar() {
-  // const classes = useStyles();
   const adminState = useSelector(selectAdmin);
 
   return (
