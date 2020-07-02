@@ -1,4 +1,5 @@
 import axios from "axios";
+import { showMessageThunkCreator } from "../appstate/actions";
 
 export function getUserList(userList) {
   return {
@@ -39,6 +40,7 @@ export function getUserDataThunkCreator(userId) {
       // dispatch(getUserData(user.data))
     } catch (error) {
       console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
     }
   };
 }
