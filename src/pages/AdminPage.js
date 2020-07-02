@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserListThunkCreator } from "../store/admin/actions";
+import {
+  getUserListThunkCreator,
+  getUserDataThunkCreator,
+} from "../store/admin/actions";
 import { selectUserList } from "../store/admin/selectors";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -30,6 +33,11 @@ export default function AdminPage() {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
 
+  function getUserData(event) {
+    event.preventDefault();
+    dispatch(getUserDataThunkCreator(6));
+  }
+
   return (
     <Grid container justify="center">
       <h1>List of users</h1>
@@ -53,7 +61,11 @@ export default function AdminPage() {
                   {userList.name}
                 </TableCell>
                 <TableCell align="right">
-                  <Button variant="contained" color="primary">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={getUserData}
+                  >
                     Get User Data
                   </Button>
                 </TableCell>
