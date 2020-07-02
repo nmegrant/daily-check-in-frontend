@@ -4,7 +4,7 @@ import {
   getUserListThunkCreator,
   getUserDataThunkCreator,
 } from "../store/admin/actions";
-import { selectUserList } from "../store/admin/selectors";
+import { selectUserList, selectUserData } from "../store/admin/selectors";
 
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -28,6 +28,9 @@ export default function AdminPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const userList = useSelector(selectUserList());
+  const user = useSelector(selectUserData());
+
+  console.log(user);
 
   useEffect(() => {
     dispatch(getUserListThunkCreator());

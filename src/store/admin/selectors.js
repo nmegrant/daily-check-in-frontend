@@ -3,3 +3,9 @@ export function selectUserList() {
     return state.admin.userlist;
   };
 }
+
+export function selectUserData() {
+  return (state) => {
+    return state.admin.user;
+  };
+}
