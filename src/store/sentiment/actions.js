@@ -1,4 +1,5 @@
 import axios from "axios";
+import { appLoading, appDoneLoading } from "../appstate/actions";
 
 export function scoreCalculated(score) {
   return {
@@ -16,7 +17,7 @@ export function getHistory(history) {
 
 export function getSentimentHistoryThunkCreator() {
   return async function getSentimentHistory(dispatch, getState) {
-    console.log(getState());
+    dispatch(appLoading());
     const sentimentHistory = await axios.get(
       "http://localhost:4000/sentiment",
       {
@@ -26,11 +27,13 @@ export function getSentimentHistoryThunkCreator() {
       }
     );
     dispatch(getHistory(sentimentHistory.data));
+    dispatch(appDoneLoading());
   };
 }
 
 export function sendSentimentTextThunkCreator(today, tomorrow, life) {
   return async function sendSentimentText(dispatch, getState) {
+    dispatch(appLoading());
     const sentimentScore = await axios.post(
       "http://localhost:4000/sentiment",
       {
@@ -44,6 +47,7 @@ export function sendSentimentTextThunkCreator(today, tomorrow, life) {
         },
       }
     );
+    dispatch(appDoneLoading());
     dispatch(scoreCalculated(sentimentScore.data.score));
   };
 }
