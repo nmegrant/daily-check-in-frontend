@@ -14,6 +14,18 @@ export function clearMessage() {
   };
 }
 
+export function appLoading() {
+  return {
+    type: "LOADING",
+  };
+}
+
+export function appDoneLoading() {
+  return {
+    type: "DONE_LOADING",
+  };
+}
+
 export function showMessageThunkCreator(message, severity) {
   return function showMessage(dispatch, getState) {
     dispatch(setMessage(message, severity));
