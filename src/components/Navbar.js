@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { selectMe } from "../store/auth/selectors";
-import { logOutUser } from "../store/auth/actions";
+// import { useSelector, useDispatch } from "react-redux";
+// import { selectMe } from "../store/auth/selectors";
+// import { logOutUser } from "../store/auth/actions";
 import { Link as RouterLink } from "react-router-dom";
 import {
   AppBar,
@@ -13,6 +13,8 @@ import {
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import CollapsableMenu from "./CollapsableMenu";
+import { selectAdmin } from "../store/auth/selectors";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Navbar() {
   const classes = useStyles();
+  const adminState = useSelector(selectAdmin);
 
   return (
     <div>
@@ -41,6 +44,13 @@ export default function Navbar() {
               >
                 <HomeIcon />
               </IconButton>
+            </Grid>
+            <Grid item>
+              {adminState ? (
+                <RouterLink to="/admin" style={{ color: "white" }}>
+                  Admin View
+                </RouterLink>
+              ) : null}
             </Grid>
             <Grid item>
               {localStorage.token ? (

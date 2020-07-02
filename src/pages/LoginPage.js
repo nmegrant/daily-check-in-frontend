@@ -38,7 +38,7 @@ export default function LoginPage() {
         direction="column"
         alignContent="center"
         justify="center"
-        spacing="3"
+        spacing={3}
       >
         <Grid item>
           <Typography variant="h3">Login</Typography>

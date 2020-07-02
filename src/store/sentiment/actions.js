@@ -16,6 +16,7 @@ export function getHistory(history) {
 
 export function getSentimentHistoryThunkCreator() {
   return async function getSentimentHistory(dispatch, getState) {
+    console.log(getState());
     const sentimentHistory = await axios.get(
       "http://localhost:4000/sentiment",
       {
