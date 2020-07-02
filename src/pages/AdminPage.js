@@ -96,7 +96,7 @@ export default function AdminPage() {
                       variant="contained"
                       color="primary"
                       onClick={() =>
-                        dispatch(getUserDataThunkCreator(userList.id))
+                        dispatch(getUserDataThunkCreator(userList.user.id))
                       }
                     >
                       Get User Data
