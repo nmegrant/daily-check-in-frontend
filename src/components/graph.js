@@ -51,30 +51,38 @@ const interpolateColor = (fromRGB, toRGB, x) => {
   }
 }
 
-export const AreaGraph = ({data, min, max, primary_key, secondary_key, showSecondaryDataAsLine, x_dataKey, x_ticks, x_label, y_label, y_dataKey, y_ticks, duotone}) => {
+export const AreaGraph = ({graphId, data, min, max, primary_key, secondary_key, showSecondaryDataAsLine, x_dataKey, x_ticks, x_label, y_label, y_dataKey, y_ticks, duotone}) => {
 
   const gradientOffset = () => {
-    const dataMax = Math.max(...data.map(d => d[primary_key]));
-    const dataMin = Math.min(...data.map(d => d[primary_key]));
+    const dataMax = Math.max(...data.map(i => i[primary_key]));
+    const dataMin = Math.min(...data.map(i => i[primary_key]));
   
-    if (dataMax <= duotone ? max : 0) return 0;
-    if (dataMin >= duotone ? min : 0) return 1;
+    if (dataMax <= 0) {
+      return 0;
+    }
+    if (dataMin >= 0) {
+      return 1;
+    }
+  
     return dataMax / (dataMax - dataMin);
   };
 
-  const offset = gradientOffset();
+  // const offset = 0.5// = gradientOffset();
+  const off = gradientOffset();
+  // console.log(data);
+  // console.log(offset);
   
   return (
-    <div style={{ width: '100%', height: 300, overflow: 'visible' }}>
+    <div style={{ width: '100%', height: '300px', overflow: 'invisible' }}>
       <ResponsiveContainer>
         <ComposedChart
-          width={500}
-          height={450}
+          // width={500}
+          // height={450}
           data={data}
           margin={{
             top: 10, right: 30, left: 0, bottom: 50,
           }}
-          baseValue={duotone ? 0 : min}
+          baseValue={0}
         >
           <CartesianGrid strokeDasharray="10 3" />
           <XAxis 
@@ -93,14 +101,15 @@ export const AreaGraph = ({data, min, max, primary_key, secondary_key, showSecon
           <Tooltip />
           <defs>
             <linearGradient 
-              id="splitColor" 
+              id={`splitColor_${graphId}`} 
               x1="0" 
               y1="0" 
               x2="0" 
               y2="1"
             >
-              <stop offset={offset} stopColor={primaryColor} stopOpacity={1} />
-              <stop offset={offset} stopColor={secondaryColor} stopOpacity={1} />
+              {console.log(off)}
+              <stop offset={off} stopColor={primaryColor} stopOpacity={1} />
+              <stop offset={off} stopColor={secondaryColor} stopOpacity={1} />
             </linearGradient>
           </defs>
           {secondary_key &&
@@ -119,7 +128,7 @@ export const AreaGraph = ({data, min, max, primary_key, secondary_key, showSecon
             type="monotoneX" 
             dataKey={primary_key} 
             stroke={getStrokeColor(primaryColor)}
-            fill={duotone ? 'url(#splitColor)' : primaryColor}
+            fill={duotone ? `url(#splitColor_${graphId})` : primaryColor}
             dot={{ fill: quaternaryColor }}
             fillOpacity={0.8}
           />
@@ -130,7 +139,7 @@ export const AreaGraph = ({data, min, max, primary_key, secondary_key, showSecon
   )
 }
 
-export const BarGraph = ({score, min, max, ticks, height = 200}) => {
+export const BarGraph = ({graphId, score, min, max, ticks, height = 200}) => {
   const scoreIsPositive = score >= 0;
   const data = [{ score }]
   return (
@@ -138,7 +147,7 @@ export const BarGraph = ({score, min, max, ticks, height = 200}) => {
       <ResponsiveContainer>
         <BarChart width={400} height={100} data={data} layout="vertical"  >
           <defs>
-            <linearGradient id="colorUv" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient id={`color_${graphId}`} x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor={scoreIsPositive ? tertiaryColor : interpolateColor(tertiaryColor, secondaryColor, score)} stopOpacity={0.8}/>
               <stop offset="100%" stopColor={scoreIsPositive ? interpolateColor(tertiaryColor, primaryColor, score) : tertiaryColor} stopOpacity={0.8}/>
             </linearGradient>
@@ -154,7 +163,7 @@ export const BarGraph = ({score, min, max, ticks, height = 200}) => {
             ticks={ticks}
           />
           <Legend />
-          <Bar dataKey="score" fill="url(#colorUv)" animationDuration={animationDuration} />
+          <Bar dataKey="score" fill={`url(#color_${graphId})`} animationDuration={animationDuration} />
         </BarChart>
       </ResponsiveContainer>
     </div> 

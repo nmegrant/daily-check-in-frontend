@@ -27,6 +27,7 @@ export default function ResultsPage() {
       <h1>Results</h1>
       <h1>{sentimentScore}</h1>
       <BarGraph
+        graphId="userResult"
         score={sentimentScore}
         min={-5}
         max={5}
@@ -37,6 +38,7 @@ export default function ResultsPage() {
       </Button>
       {history.length ? (
         <AreaGraph
+          graphId="resultGraph"
           data={sentimentHistory}
           min={-5}
           max={5}
