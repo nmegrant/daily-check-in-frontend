@@ -8,7 +8,7 @@ export function getUserList(userList) {
   };
 }
 
-export function getUserData(userData) {
+export function getData(userData) {
   return {
     type: "USER_DATA_FETCHED",
     payload: userData,
@@ -43,10 +43,10 @@ export function getUserDataThunkCreator(userId) {
           },
         }
       );
-      dispatch(getUserData(user.data));
+      dispatch(getData(user.data));
     } catch (error) {
       console.log(error);
-      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
+      dispatch(showMessageThunkCreator("Could not retrieve data", "error"));
     }
   };
 }

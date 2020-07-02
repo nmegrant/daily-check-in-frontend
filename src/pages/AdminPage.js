@@ -36,11 +36,6 @@ export default function AdminPage() {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
 
-  function getUserData(event) {
-    event.preventDefault();
-    dispatch(getUserDataThunkCreator(6));
-  }
-
   return (
     <Grid container justify="center">
       <h1>List of users</h1>
@@ -67,7 +62,9 @@ export default function AdminPage() {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={getUserData}
+                    onClick={() =>
+                      dispatch(getUserDataThunkCreator(userList.id))
+                    }
                   >
                     Get User Data
                   </Button>
