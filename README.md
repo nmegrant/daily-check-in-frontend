@@ -19,10 +19,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 * Collaborate with teammates using proper git workflow.
   * Use feature branches for development work.
-  * Perform code reviews before merging feature branches. 
+  * Perform [code](https://github.com/nmegrant/group-project-frontend/pull/8) [reviews](https://github.com/nmegrant/group-project-frontend/pull/19) before merging feature branches. 
 * Continue gaining experience in creating fullstack apps using React-Redux for the frontend and a RESTful API using Express.js for the backend.
 * Experiment with new language-related libraries [react-speech-recognition](https://www.npmjs.com/package/react-speech-recognition) and [sentiment](https://www.npmjs.com/package/sentiment)
-* Display data in a visually appealing manner using [D3.js](https://d3js.org/)
+* Display data in a visually appealing manner using [Recharts](https://recharts.org/en-US/)
 
 ### Technologies
 
@@ -33,8 +33,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Axios
 * Material-UI
 * React Speech Recognition
-* Sentiment 
-* D3.js
+* [Sentiment](https://github.com/contexD/group-project-backend/blob/master/routers/sentiment.js) 
+* [Recharts](https://github.com/nmegrant/group-project-frontend/blob/master/src/components/graph.js)
 
 ##### Back End
 * Express
