@@ -57,7 +57,7 @@ export default function FormInputSpeech(props) {
     <div>
       <FormControl style={props.styleFormControl}>
         <InputLabel htmlFor={props.name} className={classes.inputLabel}>
-          What did you do today?
+          {props.label}
         </InputLabel>
         <FilledInput
           id={props.name}
