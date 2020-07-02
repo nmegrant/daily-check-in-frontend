@@ -1,4 +1,4 @@
-const initialState = { userlist: [], user: {} };
+const initialState = { userlist: [], user: null };
 
 export default function adminReducer(state = initialState, action) {
   switch (action.type) {

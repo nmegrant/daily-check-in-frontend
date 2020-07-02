@@ -42,6 +42,7 @@ function App() {
         <Route exact path="/admin">
           {adminState === false ? <Redirect to="/" /> : <AdminPage />}
         </Route>
+        {/* <Route path="/admin" component={AdminPage} /> */}
         <Route path="/results" component={ResultsPage} />
         <Route path="/login">{me ? <Redirect to="/" /> : <LoginPage />}</Route>
         <Route path="/signup" component={SignUp} />
