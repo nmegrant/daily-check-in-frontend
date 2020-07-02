@@ -9,6 +9,16 @@ export default function appstateReducer(state = initialState, action) {
       return { ...state, messageInfo: action.payload };
     case "CLEAR_MESSAGE":
       return { ...state, messageInfo: null };
+    case "LOADING":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "DONE_LOADING":
+      return {
+        ...state,
+        loading: false,
+      };
     default:
       return state;
   }

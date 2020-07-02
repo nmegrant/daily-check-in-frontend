@@ -17,14 +17,12 @@ export function clearMessage() {
 export function appLoading() {
   return {
     type: "LOADING",
-    payload: true,
   };
 }
 
 export function appDoneLoading() {
   return {
     type: "DONE_LOADING",
-    payload: false,
   };
 }
 
