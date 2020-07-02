@@ -27,14 +27,13 @@ const useStyles = makeStyles({
 });
 
 const months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+// const days = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 
 export default function AdminPage() {
   const classes = useStyles();
   const dispatch = useDispatch();
   const userList = useSelector(selectUserList());
   const user = useSelector(selectUserData());
-  // console.log(user);
 
   const userData = (()=>{
     if(user){
@@ -46,13 +45,14 @@ export default function AdminPage() {
             comparativeScore: s.comparativeScore,
             testYear: date.getFullYear(),
             testMonth: date.getMonth(),
-            testDay: date.getDay(),
+            testDay: date.getUTCDate()
           }
         })
       }
       return separateHistory(user.sentiments);   
     } else return null
   })();
+  // console.log(user)
 
   const userScores = (()=>{
     if(userData){
@@ -61,7 +61,7 @@ export default function AdminPage() {
       return score;
     } else return null;
   })();
-  console.log(userScores)
+  // console.log(userScores)
 
   useEffect(() => {
     dispatch(getUserListThunkCreator());
@@ -108,10 +108,12 @@ export default function AdminPage() {
       </TableContainer>
     </Grid>
 
-    { (userData, userScores) && 
+    { (user && userData && userScores) && 
       <>
+      <USERNAME>Stats for patient #{user.id}: {user.name}</USERNAME>
       <AVARAGE_SCORE_WRAPPER>
         <SCORE_CONTAINER>
+          <SCORE_TITLE>Sentiment Score</SCORE_TITLE>
           <BarGraph
             score={3}
             min={-5}
@@ -120,6 +122,7 @@ export default function AdminPage() {
           />
         </SCORE_CONTAINER>
         <SCORE_CONTAINER>
+          <SCORE_TITLE>Comparative Score</SCORE_TITLE>
           <BarGraph
             score={-4}
             min={-5}
@@ -128,25 +131,27 @@ export default function AdminPage() {
           />
         </SCORE_CONTAINER>
       </AVARAGE_SCORE_WRAPPER>
+      <HISTORY_TITLE>User history:</HISTORY_TITLE>
       <GRAPH_WRAPPER>
         {months.map((month, i) => ( 
           userScores[month].length ?
           <GRAPH_CONTAINER key={month}>
-            <MONT_HEADING>{month}</MONT_HEADING>
+            <MONTH_HEADING>{month}</MONTH_HEADING>
+            <SAMPLES>Total Samples: {userScores[month].length}</SAMPLES>
             {
               <AreaGraph
-              data={userScores[month]}
-              min={-5}
-              max={5}
-              primary_key={"score"}
-              x_dataKey={"testDay"}
-              x_label={"Day"}
-              y_label={"Score"}
-              secondary_key={"comparativeScore"}
-              showSecondaryDataAsLine={true}
-              duotone={true}
-              y_ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
-            />
+                data={userScores[month]}
+                min={-5}
+                max={5}
+                primary_key={"score"}
+                x_dataKey={"testDay"}
+                x_label={"Day"}
+                y_label={"Score"}
+                secondary_key={"comparativeScore"}
+                showSecondaryDataAsLine={true}
+                duotone={true}
+                y_ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
+              />
             }
           </GRAPH_CONTAINER>
           : null
@@ -157,6 +162,10 @@ export default function AdminPage() {
     </>
   );
 }
+
+const USERNAME = styled.h1`
+
+`
 
 const GRAPH_WRAPPER = styled.div`
   /* border: 3px solid red; */
@@ -170,6 +179,10 @@ const GRAPH_WRAPPER = styled.div`
   /* flex: 3; */
   flex-wrap: wrap;
   margin: 2rem 0rem;
+`;
+
+const HISTORY_TITLE = styled.h1`
+
 `
 
 const GRAPH_CONTAINER = styled.div`
@@ -180,8 +193,11 @@ const GRAPH_CONTAINER = styled.div`
   box-shadow: 0px 0px 10px -3px rgba(0,0,0,0.75);
 `;
 
-const MONT_HEADING = styled.h1`
+const MONTH_HEADING = styled.h1`
   font-size: 2rem;
+`
+const SAMPLES = styled.h3`
+  font-size: 1rem;
 `
 
 const AVARAGE_SCORE_WRAPPER = styled.div`
@@ -202,4 +218,8 @@ const SCORE_CONTAINER = styled.div`
   flex: 0 0 40%;
   padding: 2rem;
   box-shadow: 0px 0px 10px -3px rgba(0,0,0,0.75);
+`
+
+const SCORE_TITLE = styled.h2`
+
 `

@@ -32,7 +32,7 @@ export default function FormPage() {
     if (fieldFocus === "life") {
       setLife(text);
     }
-  }, [text]);
+  }, [text, fieldFocus]);
 
   function submitText() {
     dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
