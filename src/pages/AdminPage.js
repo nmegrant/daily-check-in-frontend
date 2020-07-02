@@ -30,6 +30,20 @@ export default function AdminPage() {
   const userList = useSelector(selectUserList());
   const user = useSelector(selectUserData());
 
+  const colours = {
+    "-5": "rgba(245, 0, 0, 0.5)",
+    "-4": "rgba(245, 94, 0, 0.5)",
+    "-3": "rgba(245, 159, 0, 0.5)",
+    "-2": "rgba(245, 212, 0, 0.5)",
+    "-1": "rgba(245, 245, 0, 0.5)",
+    "0": "rgba(225, 245, 0, 0.5)",
+    "1": "rgba(200, 245, 0, 0.5)",
+    "2": "rgba(163, 245, 0, 0.5)",
+    "3": "rgba(114, 245, 0, 0.5)",
+    "4": "rgba(49, 245, 0, 0.5)",
+    "5": "rgba(0, 245, 139, 0.5)",
+  };
+
   console.log(userList);
 
   useEffect(() => {
