@@ -9,3 +9,5 @@ export function selectLoadingStatus() {
     return state.appstate.loading;
   };
 }
+
+export const selectTheme = (state) => state.appstate.theme;
