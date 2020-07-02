@@ -18,19 +18,19 @@ export default function Homepage() {
         <span>Start Assessment</span>
       </BUTTON>
       <HelplineBox>
-        <h4>
+        <DISCLAIMER>
           Our site uses the{" "}
           <STYLED_A href="https://www.npmjs.com/package/sentiment">sentiment</STYLED_A>{' '}
           module to evaluate user stress levels. <br />
           To improve accessibility we include speech recognition.
-        </h4>
-        <p>
+        </DISCLAIMER>
+        <HELP>
           If you are feeling stresed, overwhelmed, or depressed please contact
           the appropriate health authorities:<br />
           <STYLED_A href="https://www.government.nl/topics/mental-health-services/question-and-answer/help-for-mental-health-problems">
           Where can I get help for mental health problems?
           </STYLED_A>
-        </p>
+        </HELP>
         <STYLED_UL>
           <STYLED_LI>For Alcoholics Anonymous dial: 020 625 6057</STYLED_LI>
           <STYLED_LI>For Sexual Abuse hotline dial: 0900 899 8411</STYLED_LI>
@@ -51,7 +51,12 @@ export default function Homepage() {
   );
 }
 
-
+const DISCLAIMER = styled.h4`
+  margin-bottom: 0.25rem;
+`
+const HELP = styled.p`
+  margin: 0.25rem 0;
+`
 
 const Container = styled.div`
   height: 100%;
@@ -67,13 +72,17 @@ const Container = styled.div`
 `;
 
 const BUTTON = styled.div`
-  padding: 30px;
+  padding: 2rem 3rem;
   /* font-family: 'Roboto', sans-serif; */
   font-size: 2.5rem;
   border-image-slice: 1;
   border-width: 10px;
   border-style: solid;
 
+  position: relative;
+  top: 3rem;
+
+  cursor: pointer;
 
   border-image-source: linear-gradient(to left, ${colorScheme.tertiaryColor}, ${colorScheme.quaternaryColor});
   user-select: none;
@@ -115,7 +124,7 @@ const HelplineBox = styled.div`
   align-items: center;
   justify-content: center;
 
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 
   h4, p{
     text-align: center;
@@ -125,6 +134,7 @@ const HelplineBox = styled.div`
 const STYLED_UL = styled.ul`
   list-style: none;
   padding: 0;
+  margin: 0.25rem 0;
 `
 
 const STYLED_LI = styled.li`
@@ -138,11 +148,12 @@ const STYLED_A = styled.a`
 
 const NAME_WRAP = styled.div`
   position: fixed;
-  top: 3.5rem;
+  top: 5.5rem;
   /* color: ${colorScheme.quaternaryColor}; */
   /* font-size: 3rem; */
   transform: rotate(-4deg);
   user-select: none;
+  margin-left: -0.25rem;
 
   h1:first-child{
    margin-bottom: -6rem;

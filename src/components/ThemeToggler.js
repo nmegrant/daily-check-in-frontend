@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { setTheme } from '../store/appstate/actions';
 export const ThemeToggler = () => {
   const dispatch = useDispatch();
-  const theme = useSelector(selectTheme)
+  const theme = useSelector(selectTheme);
   const handleClick = () => {
     const new_theme = theme === 'light' ? 'dark' : 'light';
     dispatch(setTheme(new_theme));

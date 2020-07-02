@@ -1,6 +1,7 @@
 const initialState = {
   loading: false,
   messageInfo: null,
+  theme: 'dark'
 };
 
 export default function appstateReducer(state = initialState, action) {

@@ -54,7 +54,7 @@ export default function FormInputSpeech(props) {
   };
 
   return (
-    <div>
+    
       <FormControl style={props.styleFormControl}>
         <InputLabel htmlFor={props.name} className={classes.inputLabel}>
           {props.label}
@@ -84,6 +84,6 @@ export default function FormInputSpeech(props) {
           }
         ></FilledInput>
       </FormControl>
-    </div>
+    
   );
 }

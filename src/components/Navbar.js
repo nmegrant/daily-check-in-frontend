@@ -13,7 +13,7 @@ import {
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import CollapsableMenu from "./CollapsableMenu";
-import { selectAdmin } from "../store/auth/selectors";
+// import { selectAdmin } from "../store/auth/selectors";
 import { useSelector } from "react-redux";
 
 import { ThemeToggler } from './ThemeToggler';
@@ -23,12 +23,12 @@ import { colorScheme } from './ColorScheme';
 
 export default function Navbar() {
   // const classes = useStyles();
-  const adminState = useSelector(selectAdmin);
+  // const adminState = useSelector(selectAdmin);
 
   return (
-    <Collapsable>
-      {/* <AppBar position="static"> */}
-        <Toolbar style={{width: '100%', color: 'white'}}>
+    <NAVBAR>
+      
+        {/* <Toolbar style={{width: '100%', color: 'white'}}>
           <Grid container justify="space-between">
             <Grid item>
               <IconButton
@@ -42,7 +42,6 @@ export default function Navbar() {
               </IconButton>
             </Grid>
             <Grid item >
-              <Title>Sentiment Assessment</Title>
             </Grid>
             
             <Grid item>
@@ -54,61 +53,49 @@ export default function Navbar() {
                 </Button>
               )}
             
-              {adminState ? (
-                <RouterLink to="/admin" style={{ color: "white" }}>
-                  Admin View
-                </RouterLink>
-              ) : null}
-            
               <ThemeToggler />  
             </Grid>
           </Grid>
         </Toolbar>
-      {/* </AppBar> */}
-      </Collapsable>
+       */}
+       <IconButton
+          color="inherit"
+          aria-label="homepage"
+          component={RouterLink}
+          to="/"
+        >
+          <HomeIcon />
+        </IconButton>
+        <USER_SETTINGS>
+        {localStorage.token ? (
+            <CollapsableMenu />
+          ) : (
+            <Button color="inherit" component={RouterLink} to="/login">
+              Login
+            </Button>
+          )}
+          <ThemeToggler />
+        </USER_SETTINGS> 
+      </NAVBAR>
   );
 }
 
-
-const Title = styled.h2`
-  margin: 0;
-  padding: 0;
-
-  height: 100%;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+const USER_SETTINGS = styled.div`
+  border-left: 2px dotted rgba(255,255,255,0.4);
+  padding-left: 0.5rem;
 `
 
-const Collapsable = styled.div`
+
+const NAVBAR = styled.div`
+  min-height: 1rem;
   position: fixed;
-  top: 0;
+
   width: 100%;
-
-  transform-origin: top;
-  transform: scaleY(0.3);
-
-  transition: transform 0.3s ease;
 
   background: ${colorScheme.primaryColor};
 
+  color: white;
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
-  justify-content: flex-start;
-
-  &:hover {
-    transform: scaleY(1);
-    div {
-      opacity: 1;
-    }
-  }
-
-  div {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    background-color: ${colorScheme.primaryColor};
-  }
+  justify-content: space-between;
 `
