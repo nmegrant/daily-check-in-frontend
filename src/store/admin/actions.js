@@ -48,6 +48,7 @@ export function getUserDataThunkCreator(userId) {
         }
       );
       dispatch(getData(user.data));
+      dispatch(appDoneLoading());
     } catch (error) {
       console.log(error);
       dispatch(showMessageThunkCreator("Could not retrieve data", "error"));
