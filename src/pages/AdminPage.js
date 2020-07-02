@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getUserListThunkCreator,
@@ -29,6 +29,8 @@ export default function AdminPage() {
   const dispatch = useDispatch();
   const userList = useSelector(selectUserList());
   const user = useSelector(selectUserData());
+  const [ascending, setAscending] = useState(false);
+  const [descending, setDescending] = useState(false);
 
   const colours = {
     "-5": "rgba(245, 0, 0, 0.3)",
@@ -48,6 +50,20 @@ export default function AdminPage() {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
 
+  const ascendingSortedList = [...userList].sort(
+    (user_a, user_b) => user_a.score - user_b.score
+  );
+
+  const descendingSortedList = [...userList].sort(
+    (user_a, user_b) => user_b.score - user_a.score
+  );
+
+  const sortedList = ascending
+    ? ascendingSortedList
+    : descending
+    ? descendingSortedList
+    : userList;
+
   return (
     <Grid container justify="center">
       <h1>List of users</h1>
@@ -57,6 +73,10 @@ export default function AdminPage() {
           variant="contained"
           color="primary"
           style={{ marginRight: "10px" }}
+          onClick={() => {
+            setAscending(true);
+            setDescending(false);
+          }}
         >
           Ascending Order
         </Button>
@@ -64,6 +84,10 @@ export default function AdminPage() {
           variant="contained"
           color="primary"
           style={{ marginLeft: "10px" }}
+          onClick={() => {
+            setAscending(false);
+            setDescending(true);
+          }}
         >
           Descending Order
         </Button>
@@ -80,7 +104,7 @@ export default function AdminPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {userList.map((userList, index) => {
+            {sortedList.map((userList, index) => {
               const bg = colours[Math.floor(userList.score)];
               return (
                 <TableRow key={index}>
@@ -96,7 +120,7 @@ export default function AdminPage() {
                       variant="contained"
                       color="primary"
                       onClick={() =>
-                        dispatch(getUserDataThunkCreator(userList.id))
+                        dispatch(getUserDataThunkCreator(userList.user.id))
                       }
                     >
                       Get User Data
