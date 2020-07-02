@@ -30,6 +30,20 @@ export default function AdminPage() {
   const userList = useSelector(selectUserList());
   const user = useSelector(selectUserData());
 
+  const colours = {
+    "-5": "rgba(245, 0, 0, 0.3)",
+    "-4": "rgba(245, 94, 0, 0.3)",
+    "-3": "rgba(245, 159, 0, 0.3)",
+    "-2": "rgba(245, 212, 0, 0.3)",
+    "-1": "rgba(245, 245, 0, 0.3)",
+    "0": "rgba(225, 245, 0, 0.3)",
+    "1": "rgba(200, 245, 0, 0.3)",
+    "2": "rgba(163, 245, 0, 0.3)",
+    "3": "rgba(114, 245, 0, 0.3)",
+    "4": "rgba(49, 245, 0, 0.3)",
+    "5": "rgba(0, 245, 139, 0.3)",
+  };
+
   useEffect(() => {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
@@ -51,24 +65,31 @@ export default function AdminPage() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {userList.map((userList, index) => (
-              <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {userList.name}
-                </TableCell>
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() =>
-                      dispatch(getUserDataThunkCreator(userList.id))
-                    }
+            {userList.map((userList, index) => {
+              const bg = colours[Math.floor(userList.score)];
+              return (
+                <TableRow key={index}>
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    style={{ backgroundColor: bg }}
                   >
-                    Get User Data
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
+                    {userList.user.name}
+                  </TableCell>
+                  <TableCell align="right" style={{ backgroundColor: bg }}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() =>
+                        dispatch(getUserDataThunkCreator(userList.id))
+                      }
+                    >
+                      Get User Data
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>

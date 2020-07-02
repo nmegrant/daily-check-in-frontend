@@ -9,24 +9,24 @@ import {
   Button,
   Grid,
   IconButton,
-  makeStyles,
+  // makeStyles,
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import CollapsableMenu from "./CollapsableMenu";
 import { selectAdmin } from "../store/auth/selectors";
 import { useSelector } from "react-redux";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-end",
-    flexGrow: 1,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     display: "flex",
+//     flexDirection: "row",
+//     justifyContent: "flex-end",
+//     flexGrow: 1,
+//   },
+// }));
 
 export default function Navbar() {
-  const classes = useStyles();
+  // const classes = useStyles();
   const adminState = useSelector(selectAdmin);
 
   return (
