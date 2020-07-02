@@ -10,8 +10,7 @@ export function getUserList(userList) {
 export function getUserListThunkCreator() {
   return async function getUser(dispatch, getState) {
     try {
-      const token = localStorage.getItem("token");
-      console.log(getState());
+      // const token = localStorage.getItem("token");
       const users = await axios.get("http://localhost:4000/admin/users", {
         headers: {
           // Authorization: `Bearer ${token}`,
@@ -19,6 +18,25 @@ export function getUserListThunkCreator() {
         },
       });
       dispatch(getUserList(users.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+export function getUserDataThunkCreator(userId) {
+  return async function getUserData(dispatch, getState) {
+    try {
+      const user = await axios.get(
+        `http://localhost:4000/admin/users/:${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getState().auth.accessToken}`,
+          },
+        }
+      );
+      console.log(user.data);
+      // dispatch(getUserData(user.data))
     } catch (error) {
       console.log(error);
     }

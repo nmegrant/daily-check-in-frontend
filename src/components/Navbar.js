@@ -47,7 +47,7 @@ export default function Navbar() {
             </Grid>
             <Grid item>
               {adminState ? (
-                <RouterLink exact to="/admin" style={{ color: "white" }}>
+                <RouterLink to="/admin" style={{ color: "white" }}>
                   Admin View
                 </RouterLink>
               ) : null}
