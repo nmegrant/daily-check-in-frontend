@@ -51,7 +51,22 @@ export default function AdminPage() {
   return (
     <Grid container justify="center">
       <h1>List of users</h1>
+
       <TableContainer>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginRight: "10px" }}
+        >
+          Ascending Order
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          style={{ marginLeft: "10px" }}
+        >
+          Descending Order
+        </Button>
         <Table
           className={classes.table}
           size="small"
