@@ -30,6 +30,8 @@ export default function AdminPage() {
   const userList = useSelector(selectUserList());
   const user = useSelector(selectUserData());
 
+  console.log(userList);
+
   useEffect(() => {
     dispatch(getUserListThunkCreator());
   }, [dispatch]);
@@ -53,10 +55,14 @@ export default function AdminPage() {
           <TableBody>
             {userList.map((userList, index) => (
               <TableRow key={index}>
-                <TableCell component="th" scope="row">
-                  {userList.name}
+                <TableCell
+                  component="th"
+                  scope="row"
+                  style={{ backgroundColor: "red" }}
+                >
+                  {userList.user.name}
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="right" style={{ backgroundColor: "red" }}>
                   <Button
                     variant="contained"
                     color="primary"
