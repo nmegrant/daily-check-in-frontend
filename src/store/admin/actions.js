@@ -39,6 +39,7 @@ export function getUserDataThunkCreator(userId) {
   return async function getUserData(dispatch, getState) {
     try {
       dispatch(appLoading());
+      console.log(userId)
       const user = await axios.get(
         `http://localhost:4000/admin/users/${userId}`,
         {
