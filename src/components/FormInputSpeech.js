@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { useSpeechRecognition } from "react-speech-kit";
 
+import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import Tooltip from "@material-ui/core/Tooltip";
 import FilledInput from "@material-ui/core/FilledInput";
@@ -10,7 +11,17 @@ import IconButton from "@material-ui/core/IconButton";
 import MicIcon from "@material-ui/icons/Mic";
 import MicOffIcon from "@material-ui/icons/MicOff";
 
+const useStyles = makeStyles({
+  inputField: {
+    padding: "5%",
+  },
+  inputLabel: {
+    padding: "2%",
+  },
+});
+
 export default function FormInputSpeech(props) {
+  const classes = useStyles();
   const buffer = useRef("");
   const { listen, listening, stop, supported } = useSpeechRecognition({
     onResult: (result) => {
@@ -44,11 +55,15 @@ export default function FormInputSpeech(props) {
 
   return (
     <div>
-      <FormControl>
-        <InputLabel htmlFor={props.name}>What did you do today?</InputLabel>
+      <FormControl style={props.styleFormControl}>
+        <InputLabel htmlFor={props.name} className={classes.inputLabel}>
+          What did you do today?
+        </InputLabel>
         <FilledInput
           id={props.name}
           type="text"
+          multiline
+          className={classes.inputField}
           value={props.values[props.name]}
           onChange={handleChange(props.name)}
           endAdornment={
