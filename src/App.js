@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMe, selectAdmin } from "./store/auth/selectors";
@@ -20,15 +20,10 @@ function App() {
   const message = useSelector(selectMessageInfo());
 
   const adminState = useSelector(selectAdmin);
-  // const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     dispatch(getUserWithStoredToken());
   }, [dispatch]);
-
-  // useEffect(() => {
-  //   setAdmin(adminState);
-  // }, [adminState]);
 
   return (
     <div className="App">
