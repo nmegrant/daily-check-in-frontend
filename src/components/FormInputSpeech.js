@@ -11,7 +11,6 @@ import MicIcon from "@material-ui/icons/Mic";
 import MicOffIcon from "@material-ui/icons/MicOff";
 
 export default function FormInputSpeech(props) {
-  const [open, setOpen] = useState(true);
   const buffer = useRef("");
   const { listen, listening, stop, supported } = useSpeechRecognition({
     onResult: (result) => {
