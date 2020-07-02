@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { useSpeechRecognition } from "react-speech-kit";
 
 import FormControl from "@material-ui/core/FormControl";
