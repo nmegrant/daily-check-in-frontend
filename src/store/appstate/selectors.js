@@ -6,6 +6,6 @@ export function selectMessageInfo() {
 
 export function selectLoadingStatus() {
   return (state) => {
-    return state.appState.loading;
+    return state.appstate.loading;
   };
 }
