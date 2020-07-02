@@ -17,37 +17,45 @@ export function getHistory(history) {
 
 export function getSentimentHistoryThunkCreator() {
   return async function getSentimentHistory(dispatch, getState) {
-    dispatch(appLoading());
-    const sentimentHistory = await axios.get(
-      "http://localhost:4000/sentiment",
-      {
-        headers: {
-          Authorization: `Bearer ${getState().auth.accessToken}`,
-        },
-      }
-    );
-    dispatch(getHistory(sentimentHistory.data));
-    dispatch(appDoneLoading());
+    try {
+      dispatch(appLoading());
+      const sentimentHistory = await axios.get(
+        "http://localhost:4000/sentiment",
+        {
+          headers: {
+            Authorization: `Bearer ${getState().auth.accessToken}`,
+          },
+        }
+      );
+      dispatch(getHistory(sentimentHistory.data));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
 
 export function sendSentimentTextThunkCreator(today, tomorrow, life) {
   return async function sendSentimentText(dispatch, getState) {
-    dispatch(appLoading());
-    const sentimentScore = await axios.post(
-      "http://localhost:4000/sentiment",
-      {
-        today,
-        tomorrow,
-        life,
-      },
-      {
-        headers: {
-          Authorization: `Bearer ${getState().auth.accessToken}`,
+    try {
+      dispatch(appLoading());
+      const sentimentScore = await axios.post(
+        "http://localhost:4000/sentiment",
+        {
+          today,
+          tomorrow,
+          life,
         },
-      }
-    );
-    dispatch(appDoneLoading());
-    dispatch(scoreCalculated(sentimentScore.data.score));
+        {
+          headers: {
+            Authorization: `Bearer ${getState().auth.accessToken}`,
+          },
+        }
+      );
+      dispatch(appDoneLoading());
+      dispatch(scoreCalculated(sentimentScore.data.score));
+    } catch (error) {
+      console.log(error);
+    }
   };
 }
