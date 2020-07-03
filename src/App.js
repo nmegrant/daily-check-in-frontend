@@ -39,8 +39,8 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <GlobalStyles />
-        <Navbar />
         {loading ? <Loading /> : null}
+        <Navbar />
         {message !== null ? (
           <AlertBox text={message.message} severity={message.severity} />
         ) : null}

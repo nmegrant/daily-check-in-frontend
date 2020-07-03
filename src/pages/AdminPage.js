@@ -12,7 +12,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
-  TableHead,
+  // TableHead,
   TableRow,
   // Grid,
   // Button,
@@ -21,8 +21,8 @@ import styled from "styled-components";
 import { AreaGraph, BarGraph } from "../components/graph";
 import { Button } from "./FormPage";
 import { selectTheme } from "../store/appstate/selectors";
-import { colorScheme } from '../components/ColorScheme';
-import { darkTheme, lightTheme } from "../components/Themes";
+// import { colorScheme } from '../components/ColorScheme';
+import { lightTheme } from "../components/Themes";
 
 const useStyles = makeStyles({
   table: {
@@ -121,7 +121,7 @@ export default function AdminPage() {
         <Title style={{
           marginTop: user && userData && userScores && '5rem'
         }}>List of users</Title>
-
+        <Wrapper>
         <TableContainer>
           <ButtonWrapper>
 
@@ -192,6 +192,7 @@ export default function AdminPage() {
             </TableBody>
           </Table>
         </TableContainer>
+        </Wrapper>
       {/* </Grid> */}
 
       {user && userData && userScores && (
@@ -258,8 +259,15 @@ export default function AdminPage() {
     </>
   );
 }
+
+const Wrapper = styled.div`
+  background-color: white;
+  border-radius: 0.25rem;
+    box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.75);
+    padding: 1rem;
+`
 const Title = styled.h1`
-  margin: 0.25rem 0;
+  margin: 0.25rem 0 1rem 0;
   font-size: 3rem;
 `
 const USERNAME = styled.h1`

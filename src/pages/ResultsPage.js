@@ -8,7 +8,7 @@ import { getSentimentHistoryThunkCreator } from "../store/sentiment/actions";
 import { AreaGraph, BarGraph } from "../components/graph";
 import styled from "styled-components";
 import { Button } from "./FormPage";
-import { lightTheme } from "../components/Themes";
+// import { lightTheme } from "../components/Themes";
 
 export default function ResultsPage() {
   const dispatch = useDispatch();
@@ -37,11 +37,11 @@ export default function ResultsPage() {
           ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
         />
       </Wrapper>
-      {/* {history.length ? ( */}
-        <HistoryWrapper>
           <Button onClick={getHistory} style={{marginTop: '2rem'}}>
             See History
           </Button>
+      {history.length ? (
+        <HistoryWrapper>
           <AreaGraph
             graphId="resultGraph"
             data={sentimentHistory}
@@ -56,8 +56,8 @@ export default function ResultsPage() {
             duotone={true}
             y_ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
           />
-        </HistoryWrapper>
-      {/* ) : null} */}
+          </HistoryWrapper>
+          ) : null}
     </>
   );
 }
@@ -87,7 +87,7 @@ const Wrapper = styled.div`
 const HistoryWrapper = styled.div`
   width: 100%;
   max-width: 700px;
-  border: 3px solid red;
+  /* border: 3px solid red; */
 
   display: flex;
   flex-direction: column;
@@ -98,4 +98,6 @@ const HistoryWrapper = styled.div`
   border-radius: 0.25rem;
     box-shadow: 0px 0px 10px -3px rgba(0, 0, 0, 0.75);
     color: #363537;
+
+    margin-top: 2rem;
 ` 

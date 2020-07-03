@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { selectTheme } from '../store/appstate/selectors';
 import { useDispatch } from 'react-redux';
 import { setTheme } from '../store/appstate/actions';
+
 export const ThemeToggler = () => {
   const dispatch = useDispatch();
   const theme = useSelector(selectTheme);
@@ -19,8 +20,7 @@ export const ThemeToggler = () => {
         theme === 'light' ?
           <Brightness2 /> 
             : <Brightness7 />
-      }
-      
+      }   
     </IconButton>
   )
 }

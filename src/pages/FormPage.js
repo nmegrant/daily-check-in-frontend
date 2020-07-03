@@ -9,7 +9,7 @@ import FormInputSpeech from "../components/FormInputSpeech";
 import styled from "styled-components";
 import { selectTheme } from "../store/appstate/selectors";
 import { colorScheme } from '../components/ColorScheme';
-import { darkTheme, lightTheme } from "../components/Themes";
+import { lightTheme } from "../components/Themes";
 
 const initialValues = { today: "", tomorrow: "", life: "" };
 const initialMics = { today: false, tomorrow: false, life: false };

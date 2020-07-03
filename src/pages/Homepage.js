@@ -37,11 +37,11 @@ export default function Homepage() {
           <STYLED_LI>For SOS helpline dial: 0900 0767</STYLED_LI>
           <STYLED_LI>For ChildLine dial: 0800 0432</STYLED_LI>
           <STYLED_LI>
-            <STYLED_A href="https://access-nl.org/living-netherlands/emergency-numbers-and-other-useful-information/">
+            <STYLED_A color="quaternaryColor" href="https://access-nl.org/living-netherlands/emergency-numbers-and-other-useful-information/">
               More information 
             </STYLED_A> 
             {' '}and{' '}
-            <STYLED_A href="https://www.thehagueinternationalcentre.nl/living-in-the-hague-region/health-care/mental-health">
+            <STYLED_A color="quaternaryColor" href="https://www.thehagueinternationalcentre.nl/living-in-the-hague-region/health-care/mental-health">
               Even more information
             </STYLED_A>
            </STYLED_LI>
@@ -142,7 +142,7 @@ const STYLED_LI = styled.li`
 `
 
 export const STYLED_A = styled.a`
-  color: ${colorScheme.primaryColor};
+  color: ${props => colorScheme[props.color] || colorScheme.primaryColor};
   text-decoration: none;
 `;
 

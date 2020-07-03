@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/auth/actions";
 import {
-  Typography,
+  // Typography,
   TextField,
   Grid,
   // Button,
@@ -27,7 +27,7 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const classes = useStyles();
+  // const classes = useStyles();
   const theme = useSelector(selectTheme);
   function handleSubmit(event) {
     event.preventDefault();
