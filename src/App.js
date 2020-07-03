@@ -47,7 +47,9 @@ function App() {
         <Container>
         <Switch>
           <Route exact path="/" component={Homepage} />
-          <Route path="/form" component={FormPage} />
+          <Route path="/form">
+            {me ? <FormPage /> : <Redirect to="/login" />}
+          </Route>
           <Route exact path="/admin">
             {adminState === false ? <Redirect to="/" /> : <AdminPage />}
           </Route>

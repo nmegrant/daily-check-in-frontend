@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { sendSentimentTextThunkCreator } from "../store/sentiment/actions";
 import FormInputSpeech from "../components/FormInputSpeech";
+import { showMessageThunkCreator } from "../store/appstate/actions";
 
 // import Button from "@material-ui/core/Button";
 // import Grid from "@material-ui/core/Grid";
@@ -23,10 +24,15 @@ export default function FormPage() {
   console.log(theme)
   const submitForm = () => {
     const { today, tomorrow, life } = values;
-    console.log(`today: ${today} \t tomorrow: ${tomorrow} \t life: ${life}`);
-    dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
-    setValues(initialValues);
-    history.push("/results");
+    if (today.length === 0 || tomorrow.length === 0 || life.length === 0) {
+      dispatch(
+        showMessageThunkCreator("Please fill in all form fields", "error")
+      );
+    } else {
+      dispatch(sendSentimentTextThunkCreator(today, tomorrow, life));
+      setValues(initialValues);
+      history.push("/results");
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { showMessageThunkCreator } from "../appstate/actions";
 import { appLoading, appDoneLoading } from "../appstate/actions";
 
@@ -21,7 +21,7 @@ export function getUserListThunkCreator() {
     try {
       // const token = localStorage.getItem("token");
       dispatch(appLoading());
-      const users = await axios.get("http://localhost:4000/admin/users", {
+      const users = await axios.get("/admin/users", {
         headers: {
           // Authorization: `Bearer ${token}`,
           Authorization: `Bearer ${getState().auth.accessToken}`,
@@ -39,14 +39,11 @@ export function getUserDataThunkCreator(userId) {
   return async function getUserData(dispatch, getState) {
     try {
       dispatch(appLoading());
-      const user = await axios.get(
-        `http://localhost:4000/admin/users/${userId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${getState().auth.accessToken}`,
-          },
-        }
-      );
+      const user = await axios.get(`/admin/users/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${getState().auth.accessToken}`,
+        },
+      });
       dispatch(getData(user.data));
       dispatch(appDoneLoading());
     } catch (error) {

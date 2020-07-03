@@ -1,5 +1,9 @@
-import axios from "axios";
-import { appLoading, appDoneLoading } from "../appstate/actions";
+import axios from "../axios";
+import {
+  appLoading,
+  appDoneLoading,
+  showMessageThunkCreator,
+} from "../appstate/actions";
 
 export function scoreCalculated(score) {
   return {
@@ -19,14 +23,11 @@ export function getSentimentHistoryThunkCreator() {
   return async function getSentimentHistory(dispatch, getState) {
     try {
       dispatch(appLoading());
-      const sentimentHistory = await axios.get(
-        "http://localhost:4000/sentiment",
-        {
-          headers: {
-            Authorization: `Bearer ${getState().auth.accessToken}`,
-          },
-        }
-      );
+      const sentimentHistory = await axios.get("/sentiment", {
+        headers: {
+          Authorization: `Bearer ${getState().auth.accessToken}`,
+        },
+      });
       dispatch(getHistory(sentimentHistory.data));
       dispatch(appDoneLoading());
     } catch (error) {
@@ -40,7 +41,7 @@ export function sendSentimentTextThunkCreator(today, tomorrow, life) {
     try {
       dispatch(appLoading());
       const sentimentScore = await axios.post(
-        "http://localhost:4000/sentiment",
+        "/sentiment",
         {
           today,
           tomorrow,
@@ -56,6 +57,8 @@ export function sendSentimentTextThunkCreator(today, tomorrow, life) {
       dispatch(scoreCalculated(sentimentScore.data.score));
     } catch (error) {
       console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
+      dispatch(appDoneLoading());
     }
   };
 }
