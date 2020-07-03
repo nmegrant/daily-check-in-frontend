@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { signup } from "../store/auth/actions";
-import { STYLED_A } from "./Homepage";
+// import { STYLED_A } from "./Homepage";
 import { Button } from "./FormPage";
 import {
   TextField,
@@ -68,7 +68,7 @@ export default function SignUp() {
           </Button>
         </Grid>
         <p>
-        Already a member? <STYLED_A href="/login">Log in</STYLED_A> now!
+        Already a member? <Link to={'/login'}> Log in</Link> now!
         </p>
     </Container>
   );
