@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/auth/actions";
 import {
@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { selectTheme } from "../store/appstate/selectors";
 // import { colorScheme } from '../components/ColorScheme';
 import { darkTheme } from "../components/Themes";
-import { STYLED_A } from "./Homepage";
+// import { STYLED_A } from "./Homepage";
 import { Button } from "./FormPage";
 
 // const useStyles = makeStyles({
@@ -66,7 +66,7 @@ export default function LoginPage() {
           </Button>
         </Grid>
         <p>
-          Not a member? Don't miss out! <STYLED_A href="/signup">Sign up</STYLED_A> now!
+          Not a member? Don't miss out! <Link to={'/signup'}> Sign up</Link> now!
         </p>
     </Container>
   );
