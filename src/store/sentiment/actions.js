@@ -1,5 +1,9 @@
 import axios from "../axios";
-import { appLoading, appDoneLoading } from "../appstate/actions";
+import {
+  appLoading,
+  appDoneLoading,
+  showMessageThunkCreator,
+} from "../appstate/actions";
 
 export function scoreCalculated(score) {
   return {
