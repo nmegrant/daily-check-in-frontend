@@ -53,6 +53,7 @@ export function sendSentimentTextThunkCreator(today, tomorrow, life) {
       dispatch(scoreCalculated(sentimentScore.data.score));
     } catch (error) {
       console.log(error);
+      dispatch(showMessageThunkCreator(error.response.data.message, "error"));
     }
   };
 }
