@@ -22,45 +22,10 @@ import { colorScheme } from './ColorScheme';
 
 
 export default function Navbar() {
-  // const classes = useStyles();
-  // const adminState = useSelector(selectAdmin);
-
-export default function Navbar() {
 
 
   return (
     <NAVBAR>
-      
-        {/* <Toolbar style={{width: '100%', color: 'white'}}>
-          <Grid container justify="space-between">
-            <Grid item>
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="homepage"
-                component={RouterLink}
-                to="/"
-              >
-                <HomeIcon />
-              </IconButton>
-            </Grid>
-            <Grid item >
-            </Grid>
-            
-            <Grid item>
-              {localStorage.token ? (
-                <CollapsableMenu />
-              ) : (
-                <Button color="inherit" component={RouterLink} to="/login">
-                  Login
-                </Button>
-              )}
-            
-              <ThemeToggler />  
-            </Grid>
-          </Grid>
-        </Toolbar>
-       */}
        <IconButton
           color="inherit"
           aria-label="homepage"
