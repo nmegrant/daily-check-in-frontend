@@ -141,7 +141,7 @@ const STYLED_LI = styled.li`
   text-align: center;
 `
 
-const STYLED_A = styled.a`
+export const STYLED_A = styled.a`
   color: ${colorScheme.primaryColor};
   text-decoration: none;
 `;

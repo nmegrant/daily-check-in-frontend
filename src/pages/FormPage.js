@@ -73,7 +73,7 @@ export default function FormPage() {
   );
 }
 
-const Button = styled.div`
+export const Button = styled.div`
  padding: 0.5rem 3rem;
  /* border: 0.16em solid ${props => props.theme === 'dark' ? colorScheme.quaternaryColor : lightTheme.text}; */
  border: 0.16em solid ${colorScheme.quaternaryColor};
@@ -88,7 +88,7 @@ text-align: center;
 color: ${colorScheme.quaternaryColor};
 cursor: pointer;
 
-font-size: 2rem;
+font-size: ${props => props.fontSize || '2rem'};
 
 
 background-color: rgba(255,255,255,0);
