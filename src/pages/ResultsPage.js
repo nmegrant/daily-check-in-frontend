@@ -64,7 +64,7 @@ export default function ResultsPage() {
 const Title = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
-
+  margin-top: 5rem;
 `
 const Wrapper = styled.div`
   width: 100%;
@@ -100,4 +100,6 @@ const HistoryWrapper = styled.div`
     color: #363537;
 
     margin-top: 2rem;
+
+    margin-bottom: 3rem;
 ` 
