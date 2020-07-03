@@ -37,7 +37,7 @@ export default function ResultsPage() {
           ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
         />
       </Wrapper>
-      {history.length ? (
+      {/* {history.length ? ( */}
         <HistoryWrapper>
           <Button onClick={getHistory} style={{marginTop: '2rem'}}>
             See History
@@ -57,7 +57,7 @@ export default function ResultsPage() {
             y_ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
           />
         </HistoryWrapper>
-      ) : null}
+      {/* ) : null} */}
     </>
   );
 }

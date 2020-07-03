@@ -38,6 +38,8 @@ const lerp = ( x,  in_min,  in_max,  out_min,  out_max) => (
   (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 )
 
+console.log(lerp(3, -5, 5, 0, 255)) // 10
+
 const interpolateColor = (fromRGB, toRGB, x) => {
   x = Math.abs(x);
   if(x === 0) return fromRGB;
