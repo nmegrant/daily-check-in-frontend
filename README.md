@@ -9,7 +9,10 @@
 * [Server Repository](#server-repository)
 * [Available Scripts](#available-scripts)
 
-### About
+### About 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f8f4d09e-3b5a-47a2-9411-d4fc3ccaf338/deploy-status)](https://app.netlify.com/sites/vigorous-shaw-7be461/deploys)
+
+See our deployed site [here](https://vigorous-shaw-7be461.netlify.app/)
 
 An app for users to judge assess their emotional wellbeing using their written or spoken word. Users can also track their emotional wellbeing over time.
 
