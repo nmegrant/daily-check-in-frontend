@@ -1,6 +1,7 @@
 import React from "react";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import { makeStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,8 +15,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Loading() {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
+    <Wrapper className={classes.root}>
       <LinearProgress color="secondary" />
-    </div>
+    </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+z-index: 5000;
+
+`

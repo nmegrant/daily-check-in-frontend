@@ -32,3 +32,7 @@ export function showMessageThunkCreator(message, severity) {
     setTimeout(() => dispatch(clearMessage()), 2500);
   };
 }
+
+export const setTheme = (theme = 'light') => ({
+  type: "SET_THEME", theme
+})

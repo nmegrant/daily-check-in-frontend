@@ -4,12 +4,22 @@ import { useHistory } from "react-router-dom";
 import { selectMe } from "../store/auth/selectors";
 import { logOutUser } from "../store/auth/actions";
 import { showMessageThunkCreator } from "../store/appstate/actions";
-import { Button, Menu, MenuItem } from "@material-ui/core";
+import { Button, Menu, MenuItem, IconButton } from "@material-ui/core";
+import styled from "styled-components";
+import { Link as RouterLink } from "react-router-dom";
+
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import { selectAdmin } from "../store/auth/selectors";
+import { colorScheme } from './ColorScheme';
 
 export default function CollapsableMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
   const me = useSelector(selectMe);
+
+  const adminState = useSelector(selectAdmin);
+
   const history = useHistory();
 
   const handleNav = (event) => {
@@ -32,15 +42,20 @@ export default function CollapsableMenu(props) {
   };
 
   return (
-    <div>
-      <Button
+    <>
+    {/*<COLLAPSABLE_MENU> */}
+    <IconButton onClick={handleClick} color="inherit">
+      <AccountCircleIcon />
+    </IconButton>
+      {/* <Button
         aria-controls="simple-menu"
         aria-haspopup="true"
         onClick={handleClick}
         style={{ color: "white" }}
       >
-        {me}
-      </Button>
+        <AccountCircleIcon />
+        {/* {me} */}
+      {/* </Button> */} 
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -50,7 +65,20 @@ export default function CollapsableMenu(props) {
       >
         <MenuItem onClick={handleNav}>My results</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        {adminState ? (
+          <MenuItem>
+            <RouterLink to="/admin" style={{ color: colorScheme.quaternaryColor }}>
+              Admin View
+            </RouterLink>
+          </MenuItem>
+        ) : null}
       </Menu>
-    </div>
+      {/* </COLLAPSABLE_MENU> */}
+    </>
   );
 }
+
+const COLLAPSABLE_MENU = styled.div`
+  display: inline-flex;
+
+`
