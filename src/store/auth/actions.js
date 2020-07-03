@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "../axios";
 import { showMessageThunkCreator } from "../appstate/actions";
 
 export const USER_LOGGED_IN = "USER_LOGGED_IN";
@@ -15,13 +15,10 @@ export function logOutUser() {
 export function login(email, password) {
   return async function thunk(dispatch, getState) {
     try {
-      const { data: userData } = await axios.post(
-        "http://localhost:4000/login",
-        {
-          email,
-          password,
-        }
-      );
+      const { data: userData } = await axios.post("/login", {
+        email,
+        password,
+      });
       dispatch(userLoggedIn(userData));
       dispatch(showMessageThunkCreator("Logged in", "success"));
     } catch (error) {
@@ -34,14 +31,11 @@ export function login(email, password) {
 export function signup(name, email, password) {
   return async function thunk(dispatch, getState) {
     try {
-      const { data: userData } = await axios.post(
-        "http://localhost:4000/signup",
-        {
-          name,
-          email,
-          password,
-        }
-      );
+      const { data: userData } = await axios.post("/signup", {
+        name,
+        email,
+        password,
+      });
       dispatch(userLoggedIn(userData));
       dispatch(showMessageThunkCreator("Signed up and logged in", "success"));
     } catch (error) {
@@ -55,7 +49,7 @@ export function getUserWithStoredToken() {
   return async function thunk(dispatch, getState) {
     if (localStorage.getItem("token")) {
       try {
-        const response = await axios.get("http://localhost:4000/me", {
+        const response = await axios.get("/me", {
           headers: {
             Authorization: `Bearer ${localStorage.token}`,
           },
