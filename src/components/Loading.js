@@ -23,5 +23,8 @@ export default function Loading() {
 
 const Wrapper = styled.div`
 z-index: 5000;
+position: fixed;
+top: 3rem;
+width: 100%;
 
 `
