@@ -11,8 +11,8 @@ import {
 } from "@material-ui/core";
 import styled from "styled-components";
 import { selectTheme } from "../store/appstate/selectors";
-import { colorScheme } from '../components/ColorScheme';
-import { darkTheme, lightTheme } from "../components/Themes";
+// import { colorScheme } from '../components/ColorScheme';
+import { darkTheme } from "../components/Themes";
 import { STYLED_A } from "./Homepage";
 import { Button } from "./FormPage";
 
@@ -72,7 +72,7 @@ export default function LoginPage() {
   );
 }
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

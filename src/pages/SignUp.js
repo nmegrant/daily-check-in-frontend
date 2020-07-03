@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { signup } from "../store/auth/actions";
-
+import { STYLED_A } from "./Homepage";
+import { Button } from "./FormPage";
 import {
-  Typography,
+  // Typography,
   TextField,
   Grid,
-  Button,
+  // Button,
   makeStyles,
 } from "@material-ui/core";
+import { Container } from "./LoginPage";
+import { selectTheme } from "../store/appstate/selectors";
 
 const useStyles = makeStyles({
   root: {
@@ -25,6 +28,7 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const dispatch = useDispatch();
+  const theme = useSelector(selectTheme);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -35,20 +39,9 @@ export default function SignUp() {
   }
 
   return (
-    <form>
-      <Grid
-        container
-        className={classes.root}
-        direction="column"
-        alignContent="center"
-        justify="center"
-        spacing="3"
-      >
+    <Container theme={theme}>
         <Grid item>
-          <Typography variant="h3">Sign Up</Typography>
-        </Grid>
-        <Grid item>
-          <TextField
+        <TextField
             id="name-input"
             label="Name"
             type="string"
@@ -59,7 +52,7 @@ export default function SignUp() {
           />
         </Grid>
         <Grid item>
-          <TextField
+        <TextField
             id="email-input"
             label="Email"
             type="email"
@@ -70,7 +63,7 @@ export default function SignUp() {
           />
         </Grid>
         <Grid item>
-          <TextField
+        <TextField
             id="password-input"
             label="Password"
             type="password"
@@ -81,14 +74,13 @@ export default function SignUp() {
           />
         </Grid>
         <Grid item>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>
-            Sign up
+          <Button theme={theme} fontSize="1.5rem" onClick={handleSubmit} style={{marginTop: '2rem'}}>
+          Sign up
           </Button>
         </Grid>
         <p>
-          Already a member? <Link to="/login">Log in</Link> now!
+        Already a member? <STYLED_A href="/login">Log in</STYLED_A> now!
         </p>
-      </Grid>
-    </form>
+    </Container>
   );
 }
