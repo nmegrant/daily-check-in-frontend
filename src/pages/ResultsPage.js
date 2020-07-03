@@ -23,7 +23,7 @@ export default function ResultsPage() {
 
   const sentimentScore = useSelector(selectSentiment());
   return (
-    <div>
+    <>
       <h1>Results</h1>
       <h1>{sentimentScore}</h1>
       <BarGraph
@@ -52,6 +52,6 @@ export default function ResultsPage() {
           y_ticks={[-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5]}
         />
       ) : null}
-    </div>
+    </>
   );
 }

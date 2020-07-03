@@ -41,7 +41,7 @@ export default function FormPage() {
         mics={mics}
         setMics={setMics}
         initialMics={initialMics}
-        styleFormControl={{ width: "55%" }}
+        styleFormControl={{ width: "65%" }}
       />
       <FormInputSpeech
         name={"tomorrow"}
@@ -51,7 +51,7 @@ export default function FormPage() {
         mics={mics}
         setMics={setMics}
         initialMics={initialMics}
-        styleFormControl={{ width: "55%" }}
+        styleFormControl={{ width: "65%" }}
       />
       <FormInputSpeech
         name={"life"}
@@ -61,7 +61,7 @@ export default function FormPage() {
         mics={mics}
         setMics={setMics}
         initialMics={initialMics}
-        styleFormControl={{ width: "55%" }}
+        styleFormControl={{ width: "65%" }}
       />
     </FormWrapper>
 

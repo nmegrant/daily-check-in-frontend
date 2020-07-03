@@ -89,7 +89,7 @@ const USER_SETTINGS = styled.div`
 const NAVBAR = styled.div`
   min-height: 1rem;
   position: fixed;
-
+  z-index: 500;
   width: 100%;
 
   background: ${colorScheme.primaryColor};
