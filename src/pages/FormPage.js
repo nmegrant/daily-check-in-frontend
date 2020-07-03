@@ -87,7 +87,7 @@ text-align: center;
 /* color: ${props => props.theme === 'dark' ? colorScheme.quaternaryColor : lightTheme.text}; */
 color: ${colorScheme.quaternaryColor};
 cursor: pointer;
-
+user-select: none;
 font-size: ${props => props.fontSize || '2rem'};
 
 
