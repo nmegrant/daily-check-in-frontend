@@ -7,7 +7,7 @@ import {
   TextField,
   Grid,
   // Button,
-  makeStyles,
+  // makeStyles,
 } from "@material-ui/core";
 import styled from "styled-components";
 import { selectTheme } from "../store/appstate/selectors";
@@ -16,12 +16,12 @@ import { darkTheme } from "../components/Themes";
 import { STYLED_A } from "./Homepage";
 import { Button } from "./FormPage";
 
-const useStyles = makeStyles({
-  root: {
-    height: "100vh",
-    with: "100%",
-  },
-});
+// const useStyles = makeStyles({
+//   root: {
+//     height: "100vh",
+//     with: "100%",
+//   },
+// });
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
