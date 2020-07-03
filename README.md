@@ -46,8 +46,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 * Postgres
 
 ### Demo
-![user]
-![admin]
+![user](https://github.com/nmegrant/daily-check-in-frontend/blob/master/daily-checkin-user.gif)
+![admin](https://github.com/nmegrant/daily-check-in-frontend/blob/master/checkin-app-admin.gif)
 
 ### Server Repository 
 The repository for the backend can be found [here](https://github.com/contexD/group-project-backend). This is a RESTful API using Express.js. The database is built using Postgres. Object-relational mapping is done using Sequelize. 
