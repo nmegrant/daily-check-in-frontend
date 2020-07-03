@@ -2,19 +2,12 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 
 import {
-  // AppBar,
-  Toolbar,
   Button,
-  Grid,
   IconButton,
-  // makeStyles,
 } from "@material-ui/core";
 
 import HomeIcon from "@material-ui/icons/Home";
 import CollapsableMenu from "./CollapsableMenu";
-// import { selectAdmin } from "../store/auth/selectors";
-import { useSelector } from "react-redux";
-
 
 import { ThemeToggler } from './ThemeToggler';
 import styled from "styled-components";
@@ -22,7 +15,6 @@ import { colorScheme } from './ColorScheme';
 
 
 export default function Navbar() {
-
 
   return (
     <NAVBAR>

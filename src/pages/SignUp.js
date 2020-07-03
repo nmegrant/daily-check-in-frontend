@@ -1,29 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
 
 import { signup } from "../store/auth/actions";
 import { STYLED_A } from "./Homepage";
 import { Button } from "./FormPage";
 import {
-  // Typography,
   TextField,
   Grid,
-  // Button,
-  makeStyles,
 } from "@material-ui/core";
 import { Container } from "./LoginPage";
 import { selectTheme } from "../store/appstate/selectors";
 
-const useStyles = makeStyles({
-  root: {
-    height: "100vh",
-    with: "100%",
-  },
-});
-
 export default function SignUp() {
-  const classes = useStyles();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { selectMe } from "../store/auth/selectors";
 import { logOutUser } from "../store/auth/actions";
 import { showMessageThunkCreator } from "../store/appstate/actions";
-import { Button, Menu, MenuItem, IconButton } from "@material-ui/core";
-import styled from "styled-components";
+import { Menu, MenuItem, IconButton } from "@material-ui/core";
+
 import { Link as RouterLink } from "react-router-dom";
 
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -16,7 +15,7 @@ import { colorScheme } from './ColorScheme';
 export default function CollapsableMenu(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
-  const me = useSelector(selectMe);
+  // const me = useSelector(selectMe);
 
   const adminState = useSelector(selectAdmin);
 
@@ -43,19 +42,9 @@ export default function CollapsableMenu(props) {
 
   return (
     <>
-    {/*<COLLAPSABLE_MENU> */}
     <IconButton onClick={handleClick} color="inherit">
       <AccountCircleIcon />
     </IconButton>
-      {/* <Button
-        aria-controls="simple-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-        style={{ color: "white" }}
-      >
-        <AccountCircleIcon />
-        {/* {me} */}
-      {/* </Button> */} 
       <Menu
         id="simple-menu"
         anchorEl={anchorEl}
@@ -73,12 +62,6 @@ export default function CollapsableMenu(props) {
           </MenuItem>
         ) : null}
       </Menu>
-      {/* </COLLAPSABLE_MENU> */}
     </>
   );
 }
-
-const COLLAPSABLE_MENU = styled.div`
-  display: inline-flex;
-
-`
